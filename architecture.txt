@@ -1,0 +1,6 @@
+This file contains important architecture decisions.
+
+1. Separation between business logic and user interface
+	
+	one goal: have a base to play around with different UI frameworks.
+	therefore: hard separation between business logic and UI to be able to replace UI later 

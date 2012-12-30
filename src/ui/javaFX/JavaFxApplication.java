@@ -1,9 +1,5 @@
 package ui.javaFX;
 
-/**
- * Copyright (c) 2008, 2012 Oracle and/or its affiliates.
- * All rights reserved. Use is subject to license terms.
- */
 import javafx.application.Application;
 import javafx.scene.Group;
 import javafx.scene.Scene;
@@ -17,11 +13,19 @@ import business.worldObjects.ResourceSpawner;
 import business.worldObjects.World;
 import business.worldObjects.WorldObject;
 
+/**
+ * User Interface with JavaFX. This class starts a JavaFX application and
+ * instantiates a {@link World}.
+ * 
+ * @author Steven Schwenke
+ * 
+ */
 public class JavaFxApplication extends Application implements UserInterface {
 
-	private Group rootGroup;
-
+	/** World that is represented by this application */
 	private static World world;
+
+	private Group rootGroup;
 
 	private void init(Stage primaryStage) {
 		rootGroup = new Group();

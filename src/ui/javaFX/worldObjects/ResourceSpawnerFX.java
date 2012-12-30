@@ -6,7 +6,8 @@ import javafx.scene.control.Button;
 import business.worldObjects.ResourceSpawner;
 
 /**
- * An implementation of {@link RessourceSpawnerRepresentation} for a JavaFX UI.
+ * Graphical representation of a {@link RessourceSpawnerRepresentation} for
+ * JavaFX.
  * 
  * @author Steven Schwenke
  * 
@@ -34,5 +35,4 @@ public class ResourceSpawnerFX extends Button {
 			}
 		});
 	}
-
 }

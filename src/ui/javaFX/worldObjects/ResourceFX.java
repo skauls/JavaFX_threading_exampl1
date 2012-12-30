@@ -5,7 +5,7 @@ import javafx.scene.shape.Polygon;
 import business.worldObjects.Resource;
 
 /**
- * TODO Comment!
+ * Graphical representation of a {@link Resource} for JavaFX.
  * 
  * @author Steven Schwenke
  * 

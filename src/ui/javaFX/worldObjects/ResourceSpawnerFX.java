@@ -52,8 +52,6 @@ public class ResourceSpawnerFX extends Button {
 
 						}
 						mouseOverPane.getAnimationAppear().playFromStart();
-						System.out.println("blub");
-
 					}
 				});
 	}

@@ -4,6 +4,7 @@ import javafx.event.EventHandler;
 import javafx.scene.control.Button;
 import javafx.scene.input.MouseEvent;
 import ui.javaFX.JavaFxApplication;
+import ui.javaFX.interfaceObjects.MouseOverPane;
 import business.worldObjects.ResourceSpawner;
 
 /**

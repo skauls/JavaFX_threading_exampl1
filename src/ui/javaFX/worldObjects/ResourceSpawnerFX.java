@@ -46,13 +46,15 @@ public class ResourceSpawnerFX extends Button {
 						// mouse hovered over this spawner and the pane didn't
 						// get removed after the mouse left.
 						if (!JavaFxApplication.getInstance().getRootGroup()
-								.getChildren().contains(mouseOverPane))
+								.getChildren().contains(mouseOverPane)) {
 							JavaFxApplication.getInstance().getRootGroup()
 									.getChildren().add(mouseOverPane);
 
+						}
+						mouseOverPane.getAnimationAppear().playFromStart();
+						System.out.println("blub");
+
 					}
 				});
-
 	}
-
 }

@@ -33,8 +33,9 @@ public class MouseOverPane extends TitledPane {
 	private ResourceSpawnerFX resourceSpawnerFX;
 
 	public MouseOverPane(final ResourceSpawnerFX resourceSpawnerFX) {
-		super("RessourceSpawner", createGridPane(resourceSpawnerFX
-				.getRepresentedResourceSpawner()));
+		super("RessourceSpawner", createGridPane(resourceSpawnerFX));
+
+		this.resourceSpawnerFX = resourceSpawnerFX;
 
 		final MouseOverPane createdPane = this;
 
@@ -79,7 +80,10 @@ public class MouseOverPane extends TitledPane {
 	}
 
 	private static GridPane createGridPane(
-			final ResourceSpawner representedResourceSpawner) {
+			final ResourceSpawnerFX resourceSpawnerFX) {
+
+		final ResourceSpawner representedResourceSpawner = resourceSpawnerFX
+				.getRepresentedResourceSpawner();
 
 		GridPane pane = new GridPane();
 
@@ -130,7 +134,7 @@ public class MouseOverPane extends TitledPane {
 		GridPane.setHalignment(radiusLabel, HPos.LEFT);
 		content.add(radiusLabel);
 
-		Slider slider = new Slider(0, 500,
+		final Slider slider = new Slider(10, 500,
 				representedResourceSpawner.getRadius());
 		slider.setShowTickMarks(true);
 		slider.setShowTickLabels(true);
@@ -138,8 +142,17 @@ public class MouseOverPane extends TitledPane {
 		GridPane.setConstraints(slider, 1, 1, 2, 1);
 		GridPane.setHalignment(slider, HPos.RIGHT);
 		content.add(slider);
-		// TODO transmit new value of radius to the business object
-		// ResourceSpawner and update the red circle
+
+		slider.addEventFilter(MouseEvent.MOUSE_DRAGGED,
+				new EventHandler<MouseEvent>() {
+
+					@Override
+					public void handle(MouseEvent arg0) {
+						representedResourceSpawner.setRadius(slider.getValue());
+						resourceSpawnerFX.getRadiusCircle().setRadius(
+								slider.getValue());
+					}
+				});
 
 		return pane;
 	}

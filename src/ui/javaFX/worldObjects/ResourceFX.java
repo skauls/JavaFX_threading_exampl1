@@ -1,7 +1,10 @@
 package ui.javaFX.worldObjects;
 
+import javafx.animation.FadeTransition;
+import javafx.animation.ScaleTransition;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Polygon;
+import javafx.util.Duration;
 import business.worldObjects.Resource;
 
 /**
@@ -21,5 +24,17 @@ public class ResourceFX extends Polygon {
 		this.representedResource = representedRessource;
 		setLayoutX(representedRessource.getPosition().getX());
 		setLayoutY(representedRessource.getPosition().getY());
+
+		FadeTransition ft = new FadeTransition(Duration.millis(3000), this);
+		ft.setFromValue(0.1);
+		ft.setToValue(1.0);
+		ft.play();
+
+		ScaleTransition st = new ScaleTransition(Duration.millis(3000), this);
+		st.setFromX(0);
+		st.setToX(1);
+		st.setFromY(0);
+		st.setToY(1);
+		st.play();
 	}
 }

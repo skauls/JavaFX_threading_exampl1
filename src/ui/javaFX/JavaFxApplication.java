@@ -27,6 +27,16 @@ public class JavaFxApplication extends Application implements UserInterface {
 
 	private Group rootGroup;
 
+	private static JavaFxApplication instance;
+
+	public static JavaFxApplication getInstance() {
+		if (instance == null) {
+			throw new RuntimeException(
+					"Before getting an instance of the JavaFX application, execute the main-method in this class first. It launches the FX application.");
+		}
+		return instance;
+	}
+
 	private void init(Stage primaryStage) {
 		rootGroup = new Group();
 		world = World.getInstance();
@@ -39,6 +49,8 @@ public class JavaFxApplication extends Application implements UserInterface {
 
 	@Override
 	public void start(Stage primaryStage) throws Exception {
+
+		instance = this;
 
 		init(primaryStage);
 
@@ -60,5 +72,9 @@ public class JavaFxApplication extends Application implements UserInterface {
 			rootGroup.getChildren().add(
 					new ResourceFX((Resource) newWorldObject));
 		}
+	}
+
+	public Group getRootGroup() {
+		return rootGroup;
 	}
 }

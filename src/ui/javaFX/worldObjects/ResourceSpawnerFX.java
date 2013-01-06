@@ -59,7 +59,7 @@ public class ResourceSpawnerFX extends Button {
 							mouseOverPane = new MouseOverPane(
 									thisResourceSpawnerFX);
 
-						// possible that the pane is already added because the
+						// Possible that the pane is already added because the
 						// mouse hovered over this spawner and the pane didn't
 						// get removed after the mouse left.
 						if (!JavaFxApplication.getInstance().getRootGroup()
@@ -69,7 +69,6 @@ public class ResourceSpawnerFX extends Button {
 
 						}
 						mouseOverPane.getAnimationAppear().playFromStart();
-
 					}
 				});
 	}

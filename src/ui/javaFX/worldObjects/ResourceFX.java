@@ -36,9 +36,9 @@ public class ResourceFX extends Polygon {
 
 		ScaleTransition st = new ScaleTransition(Duration.millis(3000), this);
 		st.setFromX(0);
-		st.setToX(1);
+		st.setToX(0.4);
 		st.setFromY(0);
-		st.setToY(1);
+		st.setToY(0.4);
 		st.play();
 	}
 }

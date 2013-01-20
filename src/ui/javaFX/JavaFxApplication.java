@@ -40,7 +40,7 @@ public class JavaFxApplication extends Application implements UserInterface {
 	private void init(Stage primaryStage) {
 		rootGroup = new Group();
 		world = World.getInstance();
-		world.init(this, 1000d, 600d);
+		world.init(this, 1024d, 768d);
 
 		Scene scene = new Scene(rootGroup, world.getWidth(), world.getHeight());
 		scene.setFill(Color.DIMGRAY);

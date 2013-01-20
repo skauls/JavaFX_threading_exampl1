@@ -1,6 +1,7 @@
 package ui.javaFX;
 
 import javafx.application.Application;
+import javafx.application.Platform;
 import javafx.scene.Group;
 import javafx.scene.Scene;
 import javafx.scene.paint.Color;
@@ -63,15 +64,24 @@ public class JavaFxApplication extends Application implements UserInterface {
 	}
 
 	@Override
-	public void notifyCreation(WorldObject newWorldObject) {
-		if (newWorldObject instanceof ResourceSpawner) {
-			ResourceSpawnerFX newSpawnerFX = new ResourceSpawnerFX(
-					(ResourceSpawner) newWorldObject);
-			rootGroup.getChildren().add(newSpawnerFX);
-		} else if (newWorldObject instanceof Resource) {
-			rootGroup.getChildren().add(
-					new ResourceFX((Resource) newWorldObject));
-		}
+	public void notifyCreation(final WorldObject newWorldObject) {
+
+		// All new objects are created on the JavaFX Application Thread, even if
+		// the call to this method came from another thread, such as a timing
+		// thread started by the business logic.
+		Platform.runLater(new Runnable() {
+			@Override
+			public void run() {
+				if (newWorldObject instanceof ResourceSpawner) {
+					ResourceSpawnerFX newSpawnerFX = new ResourceSpawnerFX(
+							(ResourceSpawner) newWorldObject);
+					rootGroup.getChildren().add(newSpawnerFX);
+				} else if (newWorldObject instanceof Resource) {
+					rootGroup.getChildren().add(
+							new ResourceFX((Resource) newWorldObject));
+				}
+			}
+		});
 	}
 
 	public Group getRootGroup() {

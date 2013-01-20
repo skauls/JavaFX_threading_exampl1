@@ -3,6 +3,8 @@ package business.worldObjects;
 import java.util.HashSet;
 import java.util.Random;
 import java.util.Set;
+import java.util.Timer;
+import java.util.TimerTask;
 
 import business.logicalObjects.CartesianCoordinate;
 import business.logicalObjects.PolarCoordinate;
@@ -27,6 +29,14 @@ public class ResourceSpawner implements WorldObject {
 		this.position = position;
 		this.radius = radius;
 		resources = new HashSet<Resource>();
+
+		// TODO Make this editable from the UI
+		new Timer().schedule(new TimerTask() {
+			@Override
+			public void run() {
+				spawn();
+			}
+		}, 0, 3000);
 	}
 
 	/**

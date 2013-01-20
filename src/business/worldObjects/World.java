@@ -48,10 +48,10 @@ public class World implements WorldObject {
 	 */
 	private void addSomeObjects() {
 		addWorldObject(new ResourceSpawner(new CartesianCoordinate(100, 200),
-				200));
+				100));
 
 		addWorldObject(new ResourceSpawner(new CartesianCoordinate(600, 300),
-				200));
+				100));
 	}
 
 	/**

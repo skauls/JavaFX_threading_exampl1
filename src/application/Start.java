@@ -26,15 +26,8 @@ public class Start {
 		};
 
 		t.start();
-
-		while (true) {
-			if (!t.isAlive()) {
-				Thread.sleep(200);
-				System.out.println("terminating or closing java program");
-				System.exit(1);
-			}
-		}
-
+		t.join();
+		System.out.println("terminating or closing java program");
+		System.exit(1);
 	}
-
 }

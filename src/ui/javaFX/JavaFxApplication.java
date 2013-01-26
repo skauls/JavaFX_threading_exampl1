@@ -2,8 +2,12 @@ package ui.javaFX;
 
 import javafx.application.Application;
 import javafx.application.Platform;
+import javafx.event.EventHandler;
 import javafx.scene.Group;
+import javafx.scene.Node;
 import javafx.scene.Scene;
+import javafx.scene.control.Button;
+import javafx.scene.input.MouseEvent;
 import javafx.scene.paint.Color;
 import javafx.stage.Stage;
 import ui.UserInterface;
@@ -26,6 +30,9 @@ public class JavaFxApplication extends Application implements UserInterface {
 	/** World that is represented by this application */
 	private static World world;
 
+	/** if enabled, the user can manipulate the world */
+	private boolean rootMode = false;
+
 	private Group rootGroup;
 
 	private static JavaFxApplication instance;
@@ -40,12 +47,48 @@ public class JavaFxApplication extends Application implements UserInterface {
 
 	private void init(Stage primaryStage) {
 		rootGroup = new Group();
+
 		world = World.getInstance();
 		world.init(this, 1024d, 768d);
+
+		addRootButton();
 
 		Scene scene = new Scene(rootGroup, world.getWidth(), world.getHeight());
 		scene.setFill(Color.DIMGRAY);
 		primaryStage.setScene(scene);
+	}
+
+	/**
+	 * Adds a button to the upper right edge of the screen which enables or
+	 * disables the root-mode. This mode allows for manipulation of the world.
+	 */
+	private void addRootButton() {
+		final Button rootButton = new Button("Root");
+		rootButton.setLayoutX(world.getWidth() - 50);
+		rootButton.setLayoutY(10);
+
+		rootButton.addEventFilter(MouseEvent.MOUSE_CLICKED,
+				new EventHandler<MouseEvent>() {
+
+					@Override
+					public void handle(MouseEvent event) {
+						rootMode = !rootMode;
+
+						if (rootMode)
+							rootButton.setStyle("-fx-base: #a00;");
+						else
+							rootButton.setStyle("-fx-base: #aaa;");
+
+						// rootButton.set
+
+						for (Node n : rootGroup.getChildren()) {
+							if (n instanceof ResourceSpawnerFX)
+								((ResourceSpawnerFX) n).setVisible(rootMode);
+						}
+					}
+				});
+
+		rootGroup.getChildren().add(rootButton);
 	}
 
 	@Override
@@ -87,4 +130,9 @@ public class JavaFxApplication extends Application implements UserInterface {
 	public Group getRootGroup() {
 		return rootGroup;
 	}
+
+	public boolean isRootMode() {
+		return rootMode;
+	}
+
 }

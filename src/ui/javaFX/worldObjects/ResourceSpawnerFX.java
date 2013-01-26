@@ -38,8 +38,9 @@ public class ResourceSpawnerFX extends Button {
 
 		this.setLayoutX(representedResourceSpawner.getPosition().getX());
 		this.setLayoutY(representedResourceSpawner.getPosition().getY());
+		this.setText("R");
 
-		this.setText("+");
+		this.setVisible(JavaFxApplication.getInstance().isRootMode());
 
 		radiusCircle = new Circle(representedResourceSpawner.getPosition()
 				.getX(), representedResourceSpawner.getPosition().getY(),

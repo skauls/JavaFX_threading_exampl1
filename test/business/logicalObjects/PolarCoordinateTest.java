@@ -1,4 +1,4 @@
-package business.world;
+package business.logicalObjects;
 
 import static org.junit.Assert.assertEquals;
 

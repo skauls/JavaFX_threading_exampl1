@@ -30,4 +30,7 @@ public class Start {
 		System.out.println("terminating or closing java program");
 		System.exit(1);
 	}
+
+	// TODO use logger instead of System.out
+
 }

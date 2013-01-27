@@ -32,7 +32,10 @@ public interface UserInterface {
 
 	/**
 	 * This method notifies the user interface of an interaction between
-	 * multiple {@link WorldObject}s.
+	 * multiple {@link WorldObject}s. The contract of this method dictates that
+	 * the objects are given in the order of acting object(s), object(s) acted
+	 * upon. So if one kid beats another one up, this method should be called
+	 * something like notifyInteraction(Interaction.BEAT_UP, rowdy, geek);
 	 * 
 	 * @param interaction
 	 *            Kind of interaction

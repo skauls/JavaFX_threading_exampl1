@@ -1,7 +1,9 @@
 package ui.javaFX;
 
+import javafx.animation.FadeTransition;
 import javafx.application.Application;
 import javafx.application.Platform;
+import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.scene.Group;
 import javafx.scene.Node;
@@ -9,7 +11,9 @@ import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.paint.Color;
+import javafx.scene.shape.Line;
 import javafx.stage.Stage;
+import javafx.util.Duration;
 import ui.UserInterface;
 import ui.javaFX.worldObjects.ColonyFX;
 import ui.javaFX.worldObjects.ResourceFX;
@@ -141,9 +145,56 @@ public class JavaFxApplication extends Application implements UserInterface {
 		return rootMode;
 	}
 
+	// TODO this should be refactored into a separate AnimationFX-class
 	@Override
-	public void notifyInteraction(Interaction interaction, WorldObject[] objects) {
-		// TODO Auto-generated method stub
+	public void notifyInteraction(final Interaction interaction,
+			final WorldObject[] objects) {
+		Platform.runLater(new Runnable() {
+			@Override
+			public void run() {
+				if (Interaction.HARVEST.equals(interaction)) {
+					if (objects.length != 2)
+						throw new RuntimeException(
+								"A harvest interaction must have exactly two objects involved: the harvester and the harvest");
+
+					WorldObject harvester = objects[0];
+					WorldObject harvest = objects[1];
+
+					if (harvester instanceof Colony
+							&& harvest instanceof Resource) {
+
+						Colony c = (Colony) harvester;
+						Resource r = (Resource) harvest;
+
+						final Line line = new Line(c.getPosition().getX(), c
+								.getPosition().getY(), r.getPosition().getX(),
+								r.getPosition().getY());
+
+						line.setFill(null);
+
+						line.setStroke(Color.RED);
+
+						line.setStrokeWidth(2);
+
+						rootGroup.getChildren().add(line);
+
+						FadeTransition ft = new FadeTransition(Duration
+								.millis(1300), line);
+						ft.setFromValue(1.0);
+						ft.setToValue(0);
+						ft.play();
+
+						// remove the line after the animation
+						ft.setOnFinished(new EventHandler<ActionEvent>() {
+							@Override
+							public void handle(ActionEvent event) {
+								rootGroup.getChildren().remove(line);
+							}
+						});
+					}
+				}
+			};
+		});
 	}
 
 	// TODO Das so weiterprogrammieren, später vlt bei notifyCreation eine Map

@@ -38,7 +38,7 @@ public class Colony implements WorldObject {
 		Resource nearestResource = GeographicalLogicProvider
 				.findNearestResource(getPosition());
 
-		if (nearestResource == null)
+		if (nearestResource == null) // TODO Don't like this to return null.
 			return;
 
 		World.getInstance()

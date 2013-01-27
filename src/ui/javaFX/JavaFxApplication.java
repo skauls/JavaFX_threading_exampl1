@@ -11,8 +11,10 @@ import javafx.scene.input.MouseEvent;
 import javafx.scene.paint.Color;
 import javafx.stage.Stage;
 import ui.UserInterface;
+import ui.javaFX.worldObjects.ColonyFX;
 import ui.javaFX.worldObjects.ResourceFX;
 import ui.javaFX.worldObjects.ResourceSpawnerFX;
+import business.worldObjects.Colony;
 import business.worldObjects.Resource;
 import business.worldObjects.ResourceSpawner;
 import business.worldObjects.World;
@@ -122,6 +124,9 @@ public class JavaFxApplication extends Application implements UserInterface {
 				} else if (newWorldObject instanceof Resource) {
 					rootGroup.getChildren().add(
 							new ResourceFX((Resource) newWorldObject));
+				} else if (newWorldObject instanceof Colony) {
+					rootGroup.getChildren().add(
+							new ColonyFX((Colony) newWorldObject));
 				}
 			}
 		});

@@ -47,6 +47,7 @@ public class World implements WorldObject {
 	 * Adds some objects to the world so it doesn't look empty.
 	 */
 	private void addSomeObjects() {
+		addWorldObject(new Colony(new CartesianCoordinate(200, 100)));
 		addWorldObject(new ResourceSpawner(new CartesianCoordinate(100, 200),
 				100));
 

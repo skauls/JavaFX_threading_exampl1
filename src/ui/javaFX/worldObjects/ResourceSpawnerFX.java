@@ -6,7 +6,7 @@ import javafx.scene.input.MouseEvent;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Circle;
 import ui.javaFX.JavaFxApplication;
-import ui.javaFX.interfaceObjects.MouseOverPane;
+import ui.javaFX.interfaceObjects.ResourceFXMouseOverPane;
 import business.worldObjects.ResourceSpawner;
 
 /**
@@ -22,7 +22,7 @@ public class ResourceSpawnerFX extends Button {
 	private ResourceSpawner representedResourceSpawner;
 
 	/** the pane with the context menu */
-	private MouseOverPane mouseOverPane;
+	private ResourceFXMouseOverPane mouseOverPane;
 
 	/**
 	 * red circle that marks the radius in which new resources are spawned
@@ -57,7 +57,7 @@ public class ResourceSpawnerFX extends Button {
 								.getChildren().add(radiusCircle);
 
 						if (mouseOverPane == null)
-							mouseOverPane = new MouseOverPane(
+							mouseOverPane = new ResourceFXMouseOverPane(
 									thisResourceSpawnerFX);
 
 						// Possible that the pane is already added because the

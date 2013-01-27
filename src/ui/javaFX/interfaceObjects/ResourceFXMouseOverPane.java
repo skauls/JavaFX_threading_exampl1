@@ -25,19 +25,19 @@ import business.worldObjects.ResourceSpawner;
  * @author Steven Schwenke
  * 
  */
-public class MouseOverPane extends TitledPane {
+public class ResourceFXMouseOverPane extends TitledPane {
 
 	private ScaleTransition animationAppear;
 	private ScaleTransition animationDisappear;
 
 	private ResourceSpawnerFX resourceSpawnerFX;
 
-	public MouseOverPane(final ResourceSpawnerFX resourceSpawnerFX) {
+	public ResourceFXMouseOverPane(final ResourceSpawnerFX resourceSpawnerFX) {
 		super("RessourceSpawner", createGridPane(resourceSpawnerFX));
 
 		this.resourceSpawnerFX = resourceSpawnerFX;
 
-		final MouseOverPane createdPane = this;
+		final ResourceFXMouseOverPane createdPane = this;
 
 		setCollapsible(false);
 		setPrefSize(200, 200);

@@ -3,7 +3,7 @@ package ui.javaFX.worldObjects;
 import javafx.event.EventHandler;
 import javafx.scene.control.Button;
 import javafx.scene.input.MouseEvent;
-import ui.javaFX.interfaceObjects.MouseOverPane;
+import ui.javaFX.interfaceObjects.ResourceFXMouseOverPane;
 import business.worldObjects.Colony;
 
 /**
@@ -18,7 +18,7 @@ public class ColonyFX extends Button {
 	private Colony representedColony;
 
 	/** the pane with the context menu */
-	private MouseOverPane mouseOverPane;
+	private ResourceFXMouseOverPane mouseOverPane;
 
 	public ColonyFX(final Colony representedColony) {
 		super();

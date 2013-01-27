@@ -1,9 +1,13 @@
 package ui.javaFX.interfaceObjects;
 
 import javafx.animation.ScaleTransition;
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
+import javafx.geometry.HPos;
 import javafx.geometry.Insets;
+import javafx.scene.Node;
+import javafx.scene.control.Label;
 import javafx.scene.control.TitledPane;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.ColumnConstraints;
@@ -83,6 +87,21 @@ public class ColonyFXMouseOverPane extends TitledPane {
 		for (int j = 0; j <= 2; j++) {
 			pane.getColumnConstraints().add(colinfo);
 		}
+
+		ObservableList<Node> content = pane.getChildren();
+
+		// Resources and Button to add resources
+
+		Label label = new Label("Energy:");
+		GridPane.setConstraints(label, 0, 0);
+		GridPane.setHalignment(label, HPos.LEFT);
+		content.add(label);
+
+		final Label resourceLabel = new Label(""
+				+ representedcolony.getAvailableEnergy());
+		GridPane.setConstraints(resourceLabel, 1, 0);
+		GridPane.setHalignment(resourceLabel, HPos.LEFT);
+		content.add(resourceLabel);
 
 		return pane;
 	}

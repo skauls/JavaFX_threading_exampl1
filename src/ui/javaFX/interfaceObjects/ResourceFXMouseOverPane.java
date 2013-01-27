@@ -107,10 +107,6 @@ public class ResourceFXMouseOverPane extends TitledPane {
 		GridPane.setHalignment(label, HPos.LEFT);
 		content.add(label);
 
-		// TODO Anzahl Resources wird nicht korrekt aktualisiert. Wird dieses
-		// Panel nach dem Anlegen immer wiederverwendet? Würde erklären, warum
-		// nur ein update erfolgt, wenn der Knopf add gedrückt wird.
-
 		resourceLabel = new Label(""
 				+ representedResourceSpawner.getResources());
 		GridPane.setConstraints(resourceLabel, 1, 0);

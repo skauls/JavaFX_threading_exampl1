@@ -41,4 +41,9 @@ public class ResourceFX extends Polygon {
 		st.setToY(0.4);
 		st.play();
 	}
+
+	public Resource getRepresentedResource() {
+		return representedResource;
+	}
+
 }

@@ -14,6 +14,7 @@ import ui.UserInterface;
 import ui.javaFX.worldObjects.ColonyFX;
 import ui.javaFX.worldObjects.ResourceFX;
 import ui.javaFX.worldObjects.ResourceSpawnerFX;
+import business.logicalObjects.Interaction;
 import business.worldObjects.Colony;
 import business.worldObjects.Resource;
 import business.worldObjects.ResourceSpawner;
@@ -140,4 +141,30 @@ public class JavaFxApplication extends Application implements UserInterface {
 		return rootMode;
 	}
 
+	@Override
+	public void notifyInteraction(Interaction interaction, WorldObject[] objects) {
+		// TODO Auto-generated method stub
+	}
+
+	// TODO Das so weiterprogrammieren, später vlt bei notifyCreation eine Map
+	// anlegen, welche von BO auf FX mappt, damit das hier nicht mehr so
+	// hässlich ist
+	@Override
+	public void notifyDisappearance(WorldObject newWorldObject) {
+		for (Node n : rootGroup.getChildren()) {
+			if (n instanceof ResourceFX) {
+
+				final ResourceFX s = (ResourceFX) n;
+				if (s.getRepresentedResource().equals(newWorldObject)) {
+					Platform.runLater(new Runnable() {
+						@Override
+						public void run() {
+							rootGroup.getChildren().remove(s);
+						}
+					});
+					return;
+				}
+			}
+		}
+	}
 }

@@ -5,6 +5,7 @@ import java.util.Set;
 
 import ui.UserInterface;
 import business.logicalObjects.CartesianCoordinate;
+import business.logicalObjects.Interaction;
 
 /**
  * The world in which the simulation takes place. Singelton.
@@ -66,6 +67,45 @@ public class World implements WorldObject {
 		objects.add(newObject);
 
 		userInterface.notifyCreation(newObject);
+	}
+
+	/**
+	 * Removes a {@link WorldObject} from the world and triggers the user
+	 * interface to display this.
+	 * 
+	 * @param object
+	 *            object to remove from the world
+	 */
+	public void removeWorldObject(WorldObject object) {
+		objects.remove(object);
+		userInterface.notifyDisappearance(object);
+	}
+
+	/**
+	 * Triggers an interaction of two {@link WorldObject}s at the user
+	 * interface. This method is only for displaying some effect on the
+	 * interface, not for logic.
+	 * 
+	 * @param interaction
+	 *            kind of interaction
+	 * @param objects
+	 *            that are involved in the interaction
+	 * 
+	 */
+	public void interact(Interaction interaction, WorldObject... objects) {
+		userInterface.notifyInteraction(interaction, objects);
+	}
+
+	/**
+	 * @return all {@link Resource}s on the map
+	 */
+	public Set<Resource> getAllExistingResources() {
+		Set<Resource> resources = new HashSet<Resource>();
+		for (WorldObject worldObject : objects) {
+			if (worldObject instanceof Resource)
+				resources.add((Resource) worldObject);
+		}
+		return resources;
 	}
 
 	public double getWidth() {

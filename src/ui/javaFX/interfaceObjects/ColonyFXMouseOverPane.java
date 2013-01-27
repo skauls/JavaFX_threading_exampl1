@@ -29,6 +29,7 @@ public class ColonyFXMouseOverPane extends TitledPane {
 	private ScaleTransition animationDisappear;
 
 	private ColonyFX colonyFX;
+	private static Label energyLabel;
 
 	public ColonyFXMouseOverPane(final ColonyFX colonyFX) {
 		super("Colony", createGridPane(colonyFX));
@@ -97,11 +98,10 @@ public class ColonyFXMouseOverPane extends TitledPane {
 		GridPane.setHalignment(label, HPos.LEFT);
 		content.add(label);
 
-		final Label resourceLabel = new Label(""
-				+ representedcolony.getAvailableEnergy());
-		GridPane.setConstraints(resourceLabel, 1, 0);
-		GridPane.setHalignment(resourceLabel, HPos.LEFT);
-		content.add(resourceLabel);
+		energyLabel = new Label("" + representedcolony.getAvailableEnergy());
+		GridPane.setConstraints(energyLabel, 1, 0);
+		GridPane.setHalignment(energyLabel, HPos.LEFT);
+		content.add(energyLabel);
 
 		return pane;
 	}
@@ -110,6 +110,9 @@ public class ColonyFXMouseOverPane extends TitledPane {
 	 * Refreshes the content of the pane and let it appear.
 	 */
 	public void appear() {
+		energyLabel.setText(""
+				+ colonyFX.getRepresentedColony().getAvailableEnergy());
+
 		animationAppear.playFromStart();
 	}
 }

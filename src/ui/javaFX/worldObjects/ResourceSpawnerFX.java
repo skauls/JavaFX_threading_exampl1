@@ -69,7 +69,7 @@ public class ResourceSpawnerFX extends Button {
 									.getChildren().add(mouseOverPane);
 
 						}
-						mouseOverPane.getAnimationAppear().playFromStart();
+						mouseOverPane.appear();
 					}
 				});
 	}

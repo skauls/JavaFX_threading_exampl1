@@ -50,7 +50,7 @@ public class ColonyFX extends Button {
 									.getChildren().add(mouseOverPane);
 
 						}
-						mouseOverPane.getAnimationAppear().playFromStart();
+						mouseOverPane.appear();
 					}
 				});
 	}

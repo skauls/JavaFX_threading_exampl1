@@ -31,6 +31,7 @@ public class ResourceFXMouseOverPane extends TitledPane {
 	private ScaleTransition animationDisappear;
 
 	private ResourceSpawnerFX resourceSpawnerFX;
+	private static Label resourceLabel;
 
 	public ResourceFXMouseOverPane(final ResourceSpawnerFX resourceSpawnerFX) {
 		super("RessourceSpawner", createGridPane(resourceSpawnerFX));
@@ -106,7 +107,11 @@ public class ResourceFXMouseOverPane extends TitledPane {
 		GridPane.setHalignment(label, HPos.LEFT);
 		content.add(label);
 
-		final Label resourceLabel = new Label(""
+		// TODO Anzahl Resources wird nicht korrekt aktualisiert. Wird dieses
+		// Panel nach dem Anlegen immer wiederverwendet? Würde erklären, warum
+		// nur ein update erfolgt, wenn der Knopf add gedrückt wird.
+
+		resourceLabel = new Label(""
 				+ representedResourceSpawner.getResources());
 		GridPane.setConstraints(resourceLabel, 1, 0);
 		GridPane.setHalignment(resourceLabel, HPos.LEFT);
@@ -157,7 +162,15 @@ public class ResourceFXMouseOverPane extends TitledPane {
 		return pane;
 	}
 
-	public ScaleTransition getAnimationAppear() {
-		return animationAppear;
+	/**
+	 * Refreshes the content of the pane and let it appear.
+	 */
+	public void appear() {
+
+		resourceLabel.setText(""
+				+ resourceSpawnerFX.getRepresentedResourceSpawner()
+						.getResources());
+
+		animationAppear.playFromStart();
 	}
 }

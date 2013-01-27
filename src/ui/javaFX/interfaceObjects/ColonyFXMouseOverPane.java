@@ -106,7 +106,10 @@ public class ColonyFXMouseOverPane extends TitledPane {
 		return pane;
 	}
 
-	public ScaleTransition getAnimationAppear() {
-		return animationAppear;
+	/**
+	 * Refreshes the content of the pane and let it appear.
+	 */
+	public void appear() {
+		animationAppear.playFromStart();
 	}
 }

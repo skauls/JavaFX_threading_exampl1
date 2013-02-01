@@ -7,6 +7,7 @@ import javafx.event.EventHandler;
 import javafx.geometry.HPos;
 import javafx.geometry.Insets;
 import javafx.scene.Node;
+import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TitledPane;
 import javafx.scene.input.MouseEvent;
@@ -15,7 +16,9 @@ import javafx.scene.layout.GridPane;
 import javafx.util.Duration;
 import ui.javaFX.JavaFxApplication;
 import ui.javaFX.worldObjects.ColonyFX;
+import business.logicalObjects.CartesianCoordinate;
 import business.worldObjects.Colony;
+import business.worldObjects.World;
 
 /**
  * Pane that opens when hovering over a {@link ColonyFX}.
@@ -99,9 +102,34 @@ public class ColonyFXMouseOverPane extends TitledPane {
 		content.add(label);
 
 		energyLabel = new Label("" + representedcolony.getAvailableEnergy());
-		GridPane.setConstraints(energyLabel, 1, 0);
+		GridPane.setConstraints(energyLabel, 1, 0); // TODO make the button go
+													// over two cells
 		GridPane.setHalignment(energyLabel, HPos.LEFT);
 		content.add(energyLabel);
+
+		Button colonizeButton = new Button("Colonize");
+		GridPane.setConstraints(colonizeButton, 1, 1);
+		GridPane.setHalignment(colonizeButton, HPos.RIGHT);
+		content.add(colonizeButton);
+
+		colonizeButton.setOnAction(new EventHandler<ActionEvent>() {
+
+			@Override
+			public void handle(ActionEvent event) {
+				JavaFxApplication.getInstance().postToMessageLabel(
+						"Place your new colony or press ESCAPE"); // TODO
+																	// implement
+																	// escaping
+																	// from
+																	// colony-placement
+
+				CartesianCoordinate position = colonyFX.getRepresentedColony()
+						.getPosition();
+				World.getInstance().addWorldObject(
+						new Colony(new CartesianCoordinate(
+								position.getX() + 100, position.getY() + 100)));
+			}
+		});
 
 		return pane;
 	}

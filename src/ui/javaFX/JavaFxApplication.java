@@ -1,14 +1,19 @@
 package ui.javaFX;
 
+import java.util.Timer;
+import java.util.TimerTask;
+
 import javafx.animation.FadeTransition;
 import javafx.application.Application;
 import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
+import javafx.geometry.Pos;
 import javafx.scene.Group;
 import javafx.scene.Node;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.control.Label;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Line;
@@ -44,6 +49,10 @@ public class JavaFxApplication extends Application implements UserInterface {
 
 	private static JavaFxApplication instance;
 
+	private Label messageLabel;
+
+	private TimerTask messageLabelTimerTask;
+
 	public static JavaFxApplication getInstance() {
 		if (instance == null) {
 			throw new RuntimeException(
@@ -59,6 +68,7 @@ public class JavaFxApplication extends Application implements UserInterface {
 		world.init(this, 1024d, 768d);
 
 		addRootButton();
+		addMessageLabel();
 
 		Scene scene = new Scene(rootGroup, world.getWidth(), world.getHeight());
 		scene.setFill(Color.DIMGRAY);
@@ -96,6 +106,50 @@ public class JavaFxApplication extends Application implements UserInterface {
 				});
 
 		rootGroup.getChildren().add(rootButton);
+	}
+
+	/**
+	 * Adds the message Label that can be used for notifications to the user.
+	 */
+	private void addMessageLabel() {
+		messageLabel = new Label();
+		messageLabel.setAlignment(Pos.CENTER);
+		messageLabel.setLayoutX(world.getWidth() / 2);
+		messageLabel.setLayoutY(10);
+
+		rootGroup.getChildren().add(messageLabel);
+
+		postToMessageLabel("Initialized");
+	}
+
+	/**
+	 * Posts a message to the message label at the top of the screen. This
+	 * message will disappear in a while if no new message is shown.
+	 * 
+	 * @param newMessage
+	 *            message to be shown
+	 */
+	public void postToMessageLabel(String newMessage) {
+		messageLabel.setText(newMessage);
+
+		if (messageLabelTimerTask != null)
+			messageLabelTimerTask.cancel();
+
+		messageLabelTimerTask = new TimerTask() {
+			@Override
+			public void run() {
+				Platform.runLater(new Runnable() {
+					@Override
+					public void run() {
+						messageLabel.setText("");
+					}
+				});
+			}
+		};
+		new Timer().schedule(messageLabelTimerTask, 5000, 1000); // TODO What is
+																	// the third
+																	// parameter?
+
 	}
 
 	@Override

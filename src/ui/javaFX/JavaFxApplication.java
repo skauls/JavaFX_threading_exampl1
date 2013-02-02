@@ -53,6 +53,8 @@ public class JavaFxApplication extends Application implements UserInterface {
 
 	private TimerTask messageLabelTimerTask;
 
+	private Scene scene;
+
 	public static JavaFxApplication getInstance() {
 		if (instance == null) {
 			throw new RuntimeException(
@@ -70,7 +72,7 @@ public class JavaFxApplication extends Application implements UserInterface {
 		addRootButton();
 		addMessageLabel();
 
-		Scene scene = new Scene(rootGroup, world.getWidth(), world.getHeight());
+		scene = new Scene(rootGroup, world.getWidth(), world.getHeight());
 		scene.setFill(Color.DIMGRAY);
 		primaryStage.setScene(scene);
 	}
@@ -272,4 +274,9 @@ public class JavaFxApplication extends Application implements UserInterface {
 			}
 		}
 	}
+
+	public Scene getScene() {
+		return scene;
+	}
+
 }

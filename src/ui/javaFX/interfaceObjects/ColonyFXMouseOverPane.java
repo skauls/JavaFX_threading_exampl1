@@ -4,6 +4,7 @@ import javafx.animation.ScaleTransition;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
+import javafx.event.EventTarget;
 import javafx.geometry.HPos;
 import javafx.geometry.Insets;
 import javafx.scene.Node;
@@ -107,7 +108,7 @@ public class ColonyFXMouseOverPane extends TitledPane {
 		GridPane.setHalignment(energyLabel, HPos.LEFT);
 		content.add(energyLabel);
 
-		Button colonizeButton = new Button("Colonize");
+		final Button colonizeButton = new Button("Colonize");
 		GridPane.setConstraints(colonizeButton, 1, 1);
 		GridPane.setHalignment(colonizeButton, HPos.RIGHT);
 		content.add(colonizeButton);
@@ -123,11 +124,35 @@ public class ColonyFXMouseOverPane extends TitledPane {
 																	// from
 																	// colony-placement
 
-				CartesianCoordinate position = colonyFX.getRepresentedColony()
-						.getPosition();
-				World.getInstance().addWorldObject(
-						new Colony(new CartesianCoordinate(
-								position.getX() + 100, position.getY() + 100)));
+				// Switch into position selection mode
+				EventHandler<MouseEvent> clickEventHandler = new EventHandler<MouseEvent>() {
+
+					@Override
+					public void handle(MouseEvent event) {
+
+						EventTarget target = event.getTarget();
+						if (!target.equals(JavaFxApplication.getInstance()
+								.getScene()))
+							return;
+
+						World.getInstance().addWorldObject(
+								new Colony(new CartesianCoordinate(event
+										.getSceneX(), event.getSceneY())));
+
+						JavaFxApplication
+								.getInstance()
+								.getScene()
+								.removeEventFilter(MouseEvent.MOUSE_CLICKED,
+										this);
+					}
+				};
+				JavaFxApplication
+						.getInstance()
+						.getScene()
+						.addEventFilter(MouseEvent.MOUSE_CLICKED,
+								clickEventHandler);
+
+				// TODO use Interaction.COLONIZE like Interaction.HARVEST
 			}
 		});
 

@@ -18,9 +18,6 @@ public class ColonyFX extends Button {
 	/** the ressource spawner that is represented by this object */
 	private Colony representedColony;
 
-	/** the pane with the context menu */
-	private ColonyFXMouseOverPane mouseOverPane;
-
 	public ColonyFX(final Colony representedColony) {
 		super();
 
@@ -37,19 +34,12 @@ public class ColonyFX extends Button {
 
 					@Override
 					public void handle(MouseEvent event) {
-						if (mouseOverPane == null)
-							mouseOverPane = new ColonyFXMouseOverPane(
-									thisColonyFX);
+						ColonyFXMouseOverPane mouseOverPane = new ColonyFXMouseOverPane(
+								thisColonyFX);
 
-						// Possible that the pane is already added because the
-						// mouse hovered over this spawner and the pane didn't
-						// get removed after the mouse left.
-						if (!JavaFxApplication.getInstance().getRootGroup()
-								.getChildren().contains(mouseOverPane)) {
-							JavaFxApplication.getInstance().getRootGroup()
-									.getChildren().add(mouseOverPane);
+						JavaFxApplication.getInstance().getRootGroup()
+								.getChildren().add(mouseOverPane);
 
-						}
 						mouseOverPane.appear();
 					}
 				});

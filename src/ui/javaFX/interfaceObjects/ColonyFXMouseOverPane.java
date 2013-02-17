@@ -13,6 +13,8 @@ import javafx.scene.control.TitledPane;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.ColumnConstraints;
 import javafx.scene.layout.GridPane;
+import javafx.scene.paint.Color;
+import javafx.scene.shape.Circle;
 import javafx.util.Duration;
 import ui.javaFX.JavaFxApplication;
 import ui.javaFX.worldObjects.ColonyFX;
@@ -93,7 +95,6 @@ public class ColonyFXMouseOverPane extends TitledPane {
 		ObservableList<Node> content = pane.getChildren();
 
 		// Resources and Button to add resources
-
 		Label label = new Label("Energy:");
 		GridPane.setConstraints(label, 0, 0);
 		GridPane.setHalignment(label, HPos.LEFT);
@@ -105,10 +106,34 @@ public class ColonyFXMouseOverPane extends TitledPane {
 		GridPane.setHalignment(energyLabel, HPos.LEFT);
 		content.add(energyLabel);
 
+		// Colonize Button
 		final Button colonizeButton = new Button("Colonize");
 		GridPane.setConstraints(colonizeButton, 1, 1);
 		GridPane.setHalignment(colonizeButton, HPos.RIGHT);
 		content.add(colonizeButton);
+
+		final Circle radiusCircle = new Circle(representedcolony.getPosition()
+				.getX(), representedcolony.getPosition().getY(),
+				representedcolony.calculateColonizeRadius(), Color.TRANSPARENT);
+		radiusCircle.setStroke(Color.RED);
+		radiusCircle.setMouseTransparent(true);
+
+		colonizeButton.addEventFilter(MouseEvent.MOUSE_ENTERED,
+				new EventHandler<MouseEvent>() {
+					@Override
+					public void handle(MouseEvent event) {
+						JavaFxApplication.getInstance().getRootGroup()
+								.getChildren().add(radiusCircle);
+					}
+				});
+		colonizeButton.addEventFilter(MouseEvent.MOUSE_EXITED,
+				new EventHandler<MouseEvent>() {
+					@Override
+					public void handle(MouseEvent event) {
+						JavaFxApplication.getInstance().getRootGroup()
+								.getChildren().remove(radiusCircle);
+					}
+				});
 
 		colonizeButton.setOnAction(new ColonizeEventHandler(colonyFX
 				.getRepresentedColony()));

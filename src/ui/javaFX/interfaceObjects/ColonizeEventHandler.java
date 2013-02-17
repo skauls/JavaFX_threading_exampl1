@@ -5,6 +5,7 @@ import javafx.event.EventHandler;
 import javafx.event.EventTarget;
 import javafx.scene.input.MouseEvent;
 import ui.javaFX.JavaFxApplication;
+import business.logicalObjects.CartesianCoordinate;
 import business.worldObjects.Colony;
 
 /**
@@ -45,17 +46,24 @@ public class ColonizeEventHandler implements EventHandler<ActionEvent> {
 				if (!target.equals(JavaFxApplication.getInstance().getScene()))
 					return;
 
-				foundingColony.colonize(event.getSceneX(), event.getSceneY());
+				boolean colonializationOK = foundingColony
+						.colonize(new CartesianCoordinate(event.getSceneX(),
+								event.getSceneY()));
 
 				JavaFxApplication.getInstance().getScene()
 						.removeEventFilter(MouseEvent.MOUSE_CLICKED, this);
-				JavaFxApplication.getInstance().postToMessageLabel(
-						"Yeah, you founded a new colony!");
+
+				if (colonializationOK)
+					JavaFxApplication.getInstance().postToMessageLabel(
+							"Yeah, you founded a new colony!");
+				else
+					JavaFxApplication
+							.getInstance()
+							.postToMessageLabel(
+									"This is too far for this colony. Let it gather more energy!");
 			}
 		};
 		JavaFxApplication.getInstance().getScene()
 				.addEventFilter(MouseEvent.MOUSE_CLICKED, clickEventHandler);
-
-		// TODO use Interaction.COLONIZE like Interaction.HARVEST
 	}
 }

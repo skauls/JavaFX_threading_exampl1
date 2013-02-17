@@ -14,6 +14,12 @@ import business.logicalObjects.Interaction;
  */
 public class Colony implements WorldObject {
 
+	/**
+	 * amount to which the radius of a possible colonialization increases per
+	 * unit of available energy
+	 */
+	private final double COLONIZE_RADIUS_PER_UNIT_ENERGY = 10;
+
 	private CartesianCoordinate position;
 
 	private long availableEnergy;
@@ -51,14 +57,23 @@ public class Colony implements WorldObject {
 	/**
 	 * Founds a new colony.
 	 * 
-	 * @param x
-	 *            position in the world
-	 * @param y
-	 *            position in the world
+	 * @param coordinate
+	 *            for the new colony
+	 * @return true if the colonialization is allowed, else false
 	 */
-	public void colonize(double x, double y) {
+	public boolean colonize(CartesianCoordinate coordinate) {
+
+		double distance = GeographicalLogicProvider.calculateDistance(position,
+				coordinate);
+		if (distance > calculateColonizeRadius()) {
+			return false;
+		}
+
 		World.getInstance().addWorldObject(
-				new Colony(new CartesianCoordinate(x, y)));
+				new Colony(new CartesianCoordinate(coordinate.getX(),
+						coordinate.getY())));
+		availableEnergy -= distance / COLONIZE_RADIUS_PER_UNIT_ENERGY;
+		return true;
 	}
 
 	public CartesianCoordinate getPosition() {
@@ -75,6 +90,16 @@ public class Colony implements WorldObject {
 
 	public void setAvailableEnergy(long availableEnergy) {
 		this.availableEnergy = availableEnergy;
+	}
+
+	/**
+	 * Returns the radius, in which a colony can be foundet. Depends on the
+	 * available energy.
+	 * 
+	 * @return radius for colonialization
+	 */
+	public double calculateColonizeRadius() {
+		return availableEnergy * COLONIZE_RADIUS_PER_UNIT_ENERGY;
 	}
 
 }

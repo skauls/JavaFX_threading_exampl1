@@ -7,6 +7,7 @@ import javafx.animation.FadeTransition;
 import javafx.application.Application;
 import javafx.application.Platform;
 import javafx.event.ActionEvent;
+import javafx.event.Event;
 import javafx.event.EventHandler;
 import javafx.geometry.Pos;
 import javafx.scene.Group;
@@ -14,6 +15,8 @@ import javafx.scene.Node;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.control.TextArea;
+import javafx.scene.control.TitledPane;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Line;
@@ -55,6 +58,8 @@ public class JavaFxApplication extends Application implements UserInterface {
 
 	private Scene scene;
 
+	private TitledPane rootInfoPane;
+
 	public static JavaFxApplication getInstance() {
 		if (instance == null) {
 			throw new RuntimeException(
@@ -93,13 +98,13 @@ public class JavaFxApplication extends Application implements UserInterface {
 					public void handle(MouseEvent event) {
 						rootMode = !rootMode;
 
-						if (rootMode)
+						if (rootMode) {
 							rootButton.setStyle("-fx-base: #a00;");
-						else
+							showRootInfoArea();
+						} else {
 							rootButton.setStyle("-fx-base: #aaa;");
-
-						// rootButton.set
-
+							rootGroup.getChildren().remove(rootInfoPane);
+						}
 						for (Node n : rootGroup.getChildren()) {
 							if (n instanceof ResourceSpawnerFX)
 								((ResourceSpawnerFX) n).setVisible(rootMode);
@@ -122,6 +127,48 @@ public class JavaFxApplication extends Application implements UserInterface {
 		rootGroup.getChildren().add(messageLabel);
 
 		postToMessageLabel("Initialized");
+	}
+
+	/**
+	 * Shows a text area with information about the world.
+	 */
+	private void showRootInfoArea() {
+		// TODO extract into class like ResourceFXMouseOverPane
+		// create text area for the content
+		final TextArea rootInfoArea = new TextArea();
+
+		rootInfoArea.setLayoutX(world.getWidth() - 110);
+		rootInfoArea.setLayoutY(50);
+		rootInfoArea.setMaxWidth(150);
+
+		int numberResources = World.getInstance().getAllExistingResources()
+				.size();
+		int numberColonies = World.getInstance().getAllExistingColonies()
+				.size();
+		rootInfoArea.setText("Colonies: " + numberColonies + "\nResources: "
+				+ numberResources);
+		// TODO refresh when new objects are created
+
+		// Wrap content text area in pane so it can be dragged around
+
+		rootInfoPane = new TitledPane("World info", rootInfoArea);
+		rootInfoPane.setCollapsible(false);
+
+		// TODO make it resizable
+
+		rootInfoPane.setOnMouseDragged(new EventHandler<Event>() {
+
+			@Override
+			public void handle(Event event) {
+				if (event instanceof MouseEvent) {
+					MouseEvent mouseEvent = (MouseEvent) event;
+					rootInfoPane.setLayoutX(mouseEvent.getSceneX());
+					rootInfoPane.setLayoutY(mouseEvent.getSceneY());
+				}
+			}
+		});
+
+		rootGroup.getChildren().add(rootInfoPane);
 	}
 
 	/**

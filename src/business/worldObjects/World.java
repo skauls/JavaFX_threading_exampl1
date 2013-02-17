@@ -108,6 +108,18 @@ public class World implements WorldObject {
 		return resources;
 	}
 
+	/**
+	 * @return all {@link Colony}-objects on the map
+	 */
+	public Set<Colony> getAllExistingColonies() {
+		Set<Colony> colonies = new HashSet<Colony>();
+		for (WorldObject worldObject : objects) {
+			if (worldObject instanceof Colony)
+				colonies.add((Colony) worldObject);
+		}
+		return colonies;
+	}
+
 	public double getWidth() {
 		return width;
 	}

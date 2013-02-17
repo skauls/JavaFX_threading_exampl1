@@ -110,7 +110,8 @@ public class ColonyFXMouseOverPane extends TitledPane {
 		GridPane.setHalignment(colonizeButton, HPos.RIGHT);
 		content.add(colonizeButton);
 
-		colonizeButton.setOnAction(new ColonizeEventHandler());
+		colonizeButton.setOnAction(new ColonizeEventHandler(colonyFX
+				.getRepresentedColony()));
 
 		return pane;
 	}

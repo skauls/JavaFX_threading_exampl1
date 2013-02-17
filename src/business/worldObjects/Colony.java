@@ -48,6 +48,19 @@ public class Colony implements WorldObject {
 		availableEnergy++;
 	}
 
+	/**
+	 * Founds a new colony.
+	 * 
+	 * @param x
+	 *            position in the world
+	 * @param y
+	 *            position in the world
+	 */
+	public void colonize(double x, double y) {
+		World.getInstance().addWorldObject(
+				new Colony(new CartesianCoordinate(x, y)));
+	}
+
 	public CartesianCoordinate getPosition() {
 		return position;
 	}

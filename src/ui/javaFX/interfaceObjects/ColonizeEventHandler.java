@@ -5,9 +5,7 @@ import javafx.event.EventHandler;
 import javafx.event.EventTarget;
 import javafx.scene.input.MouseEvent;
 import ui.javaFX.JavaFxApplication;
-import business.logicalObjects.CartesianCoordinate;
 import business.worldObjects.Colony;
-import business.worldObjects.World;
 
 /**
  * Event handler for creating new colonies.
@@ -16,6 +14,18 @@ import business.worldObjects.World;
  * 
  */
 public class ColonizeEventHandler implements EventHandler<ActionEvent> {
+
+	/** founding colony */
+	private Colony foundingColony;
+
+	/**
+	 * @param foundingColony
+	 *            colony that creates the new colony
+	 */
+	public ColonizeEventHandler(Colony foundingColony) {
+		this.foundingColony = foundingColony;
+	}
+
 	@Override
 	public void handle(ActionEvent event) {
 		JavaFxApplication.getInstance().postToMessageLabel(
@@ -35,9 +45,7 @@ public class ColonizeEventHandler implements EventHandler<ActionEvent> {
 				if (!target.equals(JavaFxApplication.getInstance().getScene()))
 					return;
 
-				World.getInstance().addWorldObject(
-						new Colony(new CartesianCoordinate(event.getSceneX(),
-								event.getSceneY())));
+				foundingColony.colonize(event.getSceneX(), event.getSceneY());
 
 				JavaFxApplication.getInstance().getScene()
 						.removeEventFilter(MouseEvent.MOUSE_CLICKED, this);

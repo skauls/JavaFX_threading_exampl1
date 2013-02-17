@@ -25,7 +25,7 @@ import business.worldObjects.ResourceSpawner;
  * @author Steven Schwenke
  * 
  */
-public class ResourceFXMouseOverPane extends TitledPane {
+public class ResourceSpawnerFXMouseOverPane extends TitledPane {
 
 	private ScaleTransition animationAppear;
 	private ScaleTransition animationDisappear;
@@ -33,12 +33,12 @@ public class ResourceFXMouseOverPane extends TitledPane {
 	private ResourceSpawnerFX resourceSpawnerFX;
 	private static Label resourceLabel;
 
-	public ResourceFXMouseOverPane(final ResourceSpawnerFX resourceSpawnerFX) {
+	public ResourceSpawnerFXMouseOverPane(final ResourceSpawnerFX resourceSpawnerFX) {
 		super("RessourceSpawner", createGridPane(resourceSpawnerFX));
 
 		this.resourceSpawnerFX = resourceSpawnerFX;
 
-		final ResourceFXMouseOverPane createdPane = this;
+		final ResourceSpawnerFXMouseOverPane createdPane = this;
 
 		setCollapsible(false);
 		setPrefSize(200, 200);

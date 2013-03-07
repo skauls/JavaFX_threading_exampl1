@@ -2,8 +2,8 @@ package ui.javaFX.worldObjects;
 
 import javafx.animation.FadeTransition;
 import javafx.animation.ScaleTransition;
-import javafx.scene.paint.Color;
-import javafx.scene.shape.Polygon;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.util.Duration;
 import business.worldObjects.Resource;
 
@@ -13,21 +13,25 @@ import business.worldObjects.Resource;
  * @author Steven Schwenke
  * 
  */
-public class ResourceFX extends Polygon {
+public class ResourceFX extends ImageView {
 
 	private Resource representedResource;
 
 	public ResourceFX(final Resource representedRessource) {
-
-		// these numnbers represent the polygon that shapes the resource
-		super(new double[] { 0, 0, 10, 10, 20, 0, 20, 10, 30, 20, 20, 20, 20,
-				30, 10, 30, 0, 20, 10, 20 });
+		super();
 
 		this.representedResource = representedRessource;
 
-		this.setFill(Color.CORAL);
+		int randomNumber = (int) Math.round((Math.random() * 3) + 1);
+		Image image = new Image("resource" + randomNumber + ".png");
+
+		setImage(image);
+		setFitWidth(30);
 		setLayoutX(representedRessource.getPosition().getX());
 		setLayoutY(representedRessource.getPosition().getY());
+		setPreserveRatio(true);
+		setSmooth(true);
+		setCache(true);
 
 		FadeTransition ft = new FadeTransition(Duration.millis(3000), this);
 		ft.setFromValue(0.1);

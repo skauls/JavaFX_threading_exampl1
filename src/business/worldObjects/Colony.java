@@ -5,6 +5,7 @@ import java.util.TimerTask;
 
 import business.logicalObjects.CartesianCoordinate;
 import business.logicalObjects.GeographicalLogicProvider;
+import business.logicalObjects.GroupMembership;
 import business.logicalObjects.Interaction;
 
 /**
@@ -13,6 +14,8 @@ import business.logicalObjects.Interaction;
  * @author Steven Schwenke
  */
 public class Colony implements WorldObject {
+
+	private GroupMembership groupMembership;
 
 	/**
 	 * amount to which the radius of a possible colonialization increases per
@@ -24,8 +27,9 @@ public class Colony implements WorldObject {
 
 	private long availableEnergy;
 
-	public Colony(CartesianCoordinate position) {
+	public Colony(GroupMembership groupMembership, CartesianCoordinate position) {
 		super();
+		this.groupMembership = groupMembership;
 		this.position = position;
 		availableEnergy = 0;
 
@@ -70,10 +74,14 @@ public class Colony implements WorldObject {
 		}
 
 		World.getInstance().addWorldObject(
-				new Colony(new CartesianCoordinate(coordinate.getX(),
-						coordinate.getY())));
+				new Colony(groupMembership, new CartesianCoordinate(coordinate
+						.getX(), coordinate.getY())));
 		availableEnergy -= distance / COLONIZE_RADIUS_PER_UNIT_ENERGY;
 		return true;
+	}
+
+	public GroupMembership getGroupMembership() {
+		return groupMembership;
 	}
 
 	public CartesianCoordinate getPosition() {

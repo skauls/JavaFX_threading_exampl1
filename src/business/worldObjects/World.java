@@ -5,6 +5,7 @@ import java.util.Set;
 
 import ui.UserInterface;
 import business.logicalObjects.CartesianCoordinate;
+import business.logicalObjects.GroupMembership;
 import business.logicalObjects.Interaction;
 
 /**
@@ -48,7 +49,10 @@ public class World implements WorldObject {
 	 * Adds some objects to the world so it doesn't look empty.
 	 */
 	private void addSomeObjects() {
-		addWorldObject(new Colony(new CartesianCoordinate(200, 100)));
+		addWorldObject(new Colony(GroupMembership.PLAYER,
+				new CartesianCoordinate(200, 100)));
+		addWorldObject(new Colony(GroupMembership.FOE1,
+				new CartesianCoordinate(900, 600)));
 		addWorldObject(new ResourceSpawner(new CartesianCoordinate(100, 200),
 				100));
 

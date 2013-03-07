@@ -6,6 +6,7 @@ import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import ui.javaFX.JavaFxApplication;
 import ui.javaFX.interfaceObjects.ColonyFXMouseOverPane;
+import business.logicalObjects.GroupMembership;
 import business.worldObjects.Colony;
 
 /**
@@ -26,7 +27,8 @@ public class ColonyFX extends ImageView {
 
 		final ColonyFX thisColonyFX = this;
 
-		Image image = new Image("colony.png");
+		Image image = new Image(representedColony.getGroupMembership().equals(
+				GroupMembership.PLAYER) ? "colonyPlayer.png" : "colonyFoe.png");
 
 		setImage(image);
 		setFitWidth(30);

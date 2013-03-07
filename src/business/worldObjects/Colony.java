@@ -15,6 +15,8 @@ import business.logicalObjects.Interaction;
  */
 public class Colony implements WorldObject {
 
+	private long maxHarvestingDistance = 150;
+
 	private GroupMembership groupMembership;
 
 	/**
@@ -46,10 +48,17 @@ public class Colony implements WorldObject {
 	 */
 	private void acquireNearestResource() {
 		Resource nearestResource = GeographicalLogicProvider
-				.findNearestResource(getPosition());
+				.findNearestResource(getPosition(), World.getInstance()
+						.getAllExistingResources());
 
 		if (nearestResource == null) // TODO Don't like this to return null.
 			return;
+
+		double distanceToRessource = GeographicalLogicProvider
+				.calculateDistance(nearestResource.getPosition(), getPosition());
+		if (distanceToRessource > maxHarvestingDistance) {
+			return;
+		}
 
 		World.getInstance()
 				.interact(Interaction.HARVEST, this, nearestResource);

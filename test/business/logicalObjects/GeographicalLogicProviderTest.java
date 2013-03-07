@@ -1,12 +1,14 @@
 package business.logicalObjects;
 
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertNull;
 
-import org.junit.Ignore;
+import java.util.HashSet;
+import java.util.Set;
+
 import org.junit.Test;
 
 import business.worldObjects.Resource;
-import business.worldObjects.World;
 
 /**
  * Test for {@link GeographicalLogicProvider}.
@@ -16,26 +18,56 @@ import business.worldObjects.World;
  */
 public class GeographicalLogicProviderTest {
 
-	// TODO Think about what to return when there is absolutely no resource on
-	// the map.
-
-	@Ignore("Final use of this method not clear yet.")
 	@Test
-	public void nearestResourceIsNotNullWhenThereIsAResource() {
+	public void findNearestResourceReturnsNullWhenThereIsNoResource() {
+		// TODO Think about what to return when there is absolutely no resource
+		// on the map. Null is bad.
 
+		assertNull(GeographicalLogicProvider.findNearestResource(
+				new CartesianCoordinate(10, 10), new HashSet<Resource>()));
 	}
 
-	@Ignore("Final use of this method not clear yet.")
 	@Test
 	public void findNearestResourceWhenResourceIsOnPosition() {
-		World.getInstance().init(null, 100, 100);
+		Set<Resource> resourceSet = new HashSet<Resource>();
 		Resource resourceOnPlace = new Resource(new CartesianCoordinate(10, 10));
-		World.getInstance().addWorldObject(resourceOnPlace);
+		resourceSet.add(resourceOnPlace);
 
 		Resource nearestResource = GeographicalLogicProvider
-				.findNearestResource(new CartesianCoordinate(10, 10));
+				.findNearestResource(new CartesianCoordinate(10, 10),
+						resourceSet);
 
 		assertEquals(resourceOnPlace, nearestResource);
+	}
+
+	@Test
+	public void findNearestResourceWithTwoResources() {
+		Set<Resource> resourceSet = new HashSet<Resource>();
+		Resource r1 = new Resource(new CartesianCoordinate(0, 10));
+		Resource r2 = new Resource(new CartesianCoordinate(0, 20));
+		resourceSet.add(r1);
+		resourceSet.add(r2);
+
+		Resource nearestResource = GeographicalLogicProvider
+				.findNearestResource(new CartesianCoordinate(0, 0), resourceSet);
+
+		assertEquals(r1, nearestResource);
+	}
+
+	@Test
+	public void findNearestResourceWithThreeResources() {
+		Set<Resource> resourceSet = new HashSet<Resource>();
+		Resource r1 = new Resource(new CartesianCoordinate(0, 30));
+		Resource r2 = new Resource(new CartesianCoordinate(0, 20));
+		Resource r3 = new Resource(new CartesianCoordinate(0, 30));
+		resourceSet.add(r1);
+		resourceSet.add(r2);
+		resourceSet.add(r3);
+
+		Resource nearestResource = GeographicalLogicProvider
+				.findNearestResource(new CartesianCoordinate(0, 0), resourceSet);
+
+		assertEquals(r2, nearestResource);
 	}
 
 	@Test

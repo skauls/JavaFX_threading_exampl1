@@ -3,7 +3,6 @@ package business.logicalObjects;
 import java.util.Set;
 
 import business.worldObjects.Resource;
-import business.worldObjects.World;
 
 /**
  * Provides geographical logic.
@@ -16,19 +15,26 @@ public class GeographicalLogicProvider {
 	/**
 	 * @param coordinate
 	 *            a position on the world map
+	 * @param resources
+	 *            Set of resources to search in
 	 * @return the nearest resource to a given place on the map
 	 */
-	public static Resource findNearestResource(CartesianCoordinate coordinate) {
+	public static Resource findNearestResource(CartesianCoordinate coordinate,
+			Set<Resource> resources) {
 
-		// TODO This is only a first implementation. Goal is to find the nearest
-		// resource to a given place on the map.
+		Resource nearestResource = null;
+		double distanceToNearestResource = Double.MAX_VALUE;
 
-		Set<Resource> allExistingResources = World.getInstance()
-				.getAllExistingResources();
+		for (Resource r : resources) {
+			double distance = calculateDistance(r.getPosition(), coordinate);
 
-		if (allExistingResources.isEmpty())
-			return null;
-		return allExistingResources.iterator().next();
+			if (distance < distanceToNearestResource) {
+				distanceToNearestResource = distance;
+				nearestResource = r;
+			}
+		}
+
+		return nearestResource;
 	}
 
 	/**

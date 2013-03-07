@@ -1,7 +1,8 @@
 package ui.javaFX.worldObjects;
 
 import javafx.event.EventHandler;
-import javafx.scene.control.Button;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import ui.javaFX.JavaFxApplication;
 import ui.javaFX.interfaceObjects.ColonyFXMouseOverPane;
@@ -13,7 +14,7 @@ import business.worldObjects.Colony;
  * @author Steven Schwenke
  * 
  */
-public class ColonyFX extends Button {
+public class ColonyFX extends ImageView {
 
 	/** the ressource spawner that is represented by this object */
 	private Colony representedColony;
@@ -25,9 +26,15 @@ public class ColonyFX extends Button {
 
 		final ColonyFX thisColonyFX = this;
 
-		this.setLayoutX(representedColony.getPosition().getX());
-		this.setLayoutY(representedColony.getPosition().getY());
-		this.setText("Colony");
+		Image image = new Image("colony.png");
+
+		setImage(image);
+		setFitWidth(30);
+		setLayoutX(representedColony.getPosition().getX());
+		setLayoutY(representedColony.getPosition().getY());
+		setPreserveRatio(true);
+		setSmooth(true);
+		setCache(true);
 
 		this.addEventFilter(MouseEvent.MOUSE_ENTERED,
 				new EventHandler<MouseEvent>() {

@@ -43,6 +43,12 @@ public class ColonyFX extends ImageView {
 
 					@Override
 					public void handle(MouseEvent event) {
+						if (!representedColony.getGroupMembership().equals(
+								GroupMembership.PLAYER)
+								&& !JavaFxApplication.getInstance()
+										.isRootMode()) {
+							return;
+						}
 						ColonyFXMouseOverPane mouseOverPane = new ColonyFXMouseOverPane(
 								thisColonyFX);
 

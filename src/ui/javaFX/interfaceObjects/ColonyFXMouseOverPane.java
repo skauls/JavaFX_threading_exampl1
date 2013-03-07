@@ -31,6 +31,8 @@ public class ColonyFXMouseOverPane extends TitledPane {
 	private ScaleTransition animationAppear;
 	private ScaleTransition animationDisappear;
 
+	private Circle harvestingRangeCircle;
+
 	private ColonyFX colonyFX;
 	private static Label energyLabel;
 
@@ -58,6 +60,9 @@ public class ColonyFXMouseOverPane extends TitledPane {
 							public void handle(ActionEvent event) {
 								JavaFxApplication.getInstance().getRootGroup()
 										.getChildren().remove(createdPane);
+								JavaFxApplication.getInstance().getRootGroup()
+										.getChildren()
+										.remove(harvestingRangeCircle);
 
 							}
 						});
@@ -149,5 +154,16 @@ public class ColonyFXMouseOverPane extends TitledPane {
 				+ colonyFX.getRepresentedColony().getAvailableEnergy());
 
 		animationAppear.playFromStart();
+
+		// green harvesting range
+		harvestingRangeCircle = new Circle(colonyFX.getRepresentedColony()
+				.getPosition().getX(), colonyFX.getRepresentedColony()
+				.getPosition().getY(), colonyFX.getRepresentedColony()
+				.getMaxHarvestingDistance(), Color.TRANSPARENT);
+		harvestingRangeCircle.setStroke(new Color(255 / 255,
+				(double) (110d / 255d), (double) (3d / 255d), 1));
+		harvestingRangeCircle.setMouseTransparent(true);
+		JavaFxApplication.getInstance().getRootGroup().getChildren()
+				.add(harvestingRangeCircle);
 	}
 }

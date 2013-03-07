@@ -27,6 +27,10 @@ public class Colony implements WorldObject {
 
 	private CartesianCoordinate position;
 
+	public long getMaxHarvestingDistance() {
+		return maxHarvestingDistance;
+	}
+
 	private long availableEnergy;
 
 	public Colony(GroupMembership groupMembership, CartesianCoordinate position) {

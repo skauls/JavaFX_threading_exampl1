@@ -50,7 +50,7 @@ public class Colony implements WorldObject {
 	/**
 	 * Acquires the nearest resource and fills the energy of this base.
 	 */
-	private void acquireNearestResource() {
+	private synchronized void acquireNearestResource() {
 		Resource nearestResource = GeographicalLogicProvider
 				.findNearestResource(getPosition(), World.getInstance()
 						.getAllExistingResources());

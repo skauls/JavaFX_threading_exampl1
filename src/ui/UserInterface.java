@@ -25,10 +25,10 @@ public interface UserInterface {
 	 * When a {@link WorldObject} is meant to be destroyed at the user
 	 * interface, the user interface has to be notified.
 	 * 
-	 * @param newWorldObject
+	 * @param object
 	 *            object that should be destroyed
 	 */
-	void notifyDisappearance(WorldObject newWorldObject);
+	void notifyDisappearance(WorldObject object);
 
 	/**
 	 * This method notifies the user interface of an interaction between

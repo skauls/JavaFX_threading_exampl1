@@ -17,13 +17,13 @@ public class Colony implements WorldObject {
 
 	private long maxHarvestingDistance = 150;
 
-	private GroupMembership groupMembership;
-
 	/**
 	 * amount to which the radius of a possible colonialization increases per
 	 * unit of available energy
 	 */
-	private final double COLONIZE_RADIUS_PER_UNIT_ENERGY = 10;
+	private final double COLONIZE_RADIUS_PER_UNIT_ENERGY = 30;
+
+	private GroupMembership groupMembership;
 
 	private CartesianCoordinate position;
 

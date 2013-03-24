@@ -5,6 +5,8 @@ import java.util.Set;
 
 import ui.UserInterface;
 import business.logicalObjects.CartesianCoordinate;
+import business.logicalObjects.GameState;
+import business.logicalObjects.GameStateManager;
 import business.logicalObjects.GroupMembership;
 import business.logicalObjects.Interaction;
 
@@ -41,11 +43,14 @@ public class World {
 		this.userInterface = userInterface;
 		this.width = width;
 		this.height = height;
+
 		objects = new HashSet<WorldObject>();
 
 		if (addSomeObjects) {
 			addSomeObjects();
 		}
+
+		GameStateManager.getInstance().checkGameState();
 	}
 
 	/**
@@ -81,6 +86,17 @@ public class World {
 		}
 		userInterface.notifyCreation(newObject);
 
+	}
+
+	/**
+	 * Notifies the user interface about a change in the game state.
+	 * 
+	 * @param newGameState
+	 */
+	public void notifyGameStateChange(GameState newGameState) {
+		// TODO this is just a delegation. Better: GameStateManager can notify
+		// the user interface directly.
+		userInterface.notifyChangeInGameState(newGameState);
 	}
 
 	/**

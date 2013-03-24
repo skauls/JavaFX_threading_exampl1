@@ -25,6 +25,7 @@ import ui.javaFX.interfaceObjects.RootInfoPane;
 import ui.javaFX.worldObjects.ColonyFX;
 import ui.javaFX.worldObjects.ResourceFX;
 import ui.javaFX.worldObjects.ResourceSpawnerFX;
+import business.logicalObjects.GameState;
 import business.logicalObjects.Interaction;
 import business.worldObjects.Colony;
 import business.worldObjects.Resource;
@@ -302,6 +303,16 @@ public class JavaFxApplication extends Application implements UserInterface {
 
 	public Scene getScene() {
 		return scene;
+	}
+
+	@Override
+	public void notifyChangeInGameState(GameState newState) {
+		if (newState.equals(GameState.PLAYER_WON)) {
+			postToMessageLabel("You won!");
+		} else {
+			postToMessageLabel("unknown GameState ... what's going on here?");
+		}
+
 	}
 
 }

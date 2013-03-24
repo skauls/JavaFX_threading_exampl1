@@ -4,6 +4,7 @@ import java.util.Timer;
 import java.util.TimerTask;
 
 import business.logicalObjects.CartesianCoordinate;
+import business.logicalObjects.GameStateManager;
 import business.logicalObjects.GeographicalLogicProvider;
 import business.logicalObjects.GroupMembership;
 import business.logicalObjects.Interaction;
@@ -122,6 +123,7 @@ public class Colony implements WorldObject {
 		} else if (energyAttacked < availableEnergy) {
 			setAvailableEnergy(availableEnergy - energyAttacked);
 			attackedColony.destroy();
+			GameStateManager.getInstance().checkGameState();
 		}
 	}
 

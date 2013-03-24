@@ -1,5 +1,6 @@
 package ui;
 
+import business.logicalObjects.GameState;
 import business.logicalObjects.Interaction;
 import business.worldObjects.WorldObject;
 
@@ -43,4 +44,12 @@ public interface UserInterface {
 	 *            involved in the interaction
 	 */
 	void notifyInteraction(Interaction interaction, WorldObject[] objects);
+
+	/**
+	 * A change in the game state, for example when the player won, has to be
+	 * shown to the user via the UserInterface.
+	 * 
+	 * @param newState
+	 */
+	void notifyChangeInGameState(GameState newState);
 }

@@ -60,10 +60,11 @@ public class AttackEventHandler implements EventHandler<ActionEvent> {
 						&& event.getClickCount() > 0) {
 					Colony attackedColony = ((ColonyFX) event.getTarget())
 							.getRepresentedColony();
-					attackingColony.attack(attackedColony);
 
 					JavaFxApplication.getInstance().postToMessageLabel(
 							"Attack happened!");
+
+					attackingColony.attack(attackedColony);
 
 					JavaFxApplication.getInstance().getScene()
 							.setCursor(Cursor.DEFAULT);

@@ -124,7 +124,9 @@ public class JavaFxApplication extends Application implements UserInterface {
 		messageLabel.setLayoutX(world.getWidth() / 2);
 		messageLabel.setLayoutY(10);
 
-		rootGroup.getChildren().add(messageLabel);
+		synchronized (rootGroup) {
+			rootGroup.getChildren().add(messageLabel);
+		}
 
 		postToMessageLabel("Initialized");
 	}
@@ -191,16 +193,18 @@ public class JavaFxApplication extends Application implements UserInterface {
 		Platform.runLater(new Runnable() {
 			@Override
 			public void run() {
-				if (newWorldObject instanceof ResourceSpawner) {
-					ResourceSpawnerFX newSpawnerFX = new ResourceSpawnerFX(
-							(ResourceSpawner) newWorldObject);
-					rootGroup.getChildren().add(newSpawnerFX);
-				} else if (newWorldObject instanceof Resource) {
-					rootGroup.getChildren().add(
-							new ResourceFX((Resource) newWorldObject));
-				} else if (newWorldObject instanceof Colony) {
-					rootGroup.getChildren().add(
-							new ColonyFX((Colony) newWorldObject));
+				synchronized (rootGroup) {
+					if (newWorldObject instanceof ResourceSpawner) {
+						ResourceSpawnerFX newSpawnerFX = new ResourceSpawnerFX(
+								(ResourceSpawner) newWorldObject);
+						rootGroup.getChildren().add(newSpawnerFX);
+					} else if (newWorldObject instanceof Resource) {
+						rootGroup.getChildren().add(
+								new ResourceFX((Resource) newWorldObject));
+					} else if (newWorldObject instanceof Colony) {
+						rootGroup.getChildren().add(
+								new ColonyFX((Colony) newWorldObject));
+					}
 				}
 			}
 		});
@@ -245,21 +249,23 @@ public class JavaFxApplication extends Application implements UserInterface {
 
 						line.setStrokeWidth(2);
 
-						rootGroup.getChildren().add(line);
+						synchronized (rootGroup) {
+							rootGroup.getChildren().add(line);
 
-						FadeTransition ft = new FadeTransition(Duration
-								.millis(1300), line);
-						ft.setFromValue(1.0);
-						ft.setToValue(0);
-						ft.play();
+							FadeTransition ft = new FadeTransition(Duration
+									.millis(1300), line);
+							ft.setFromValue(1.0);
+							ft.setToValue(0);
+							ft.play();
 
-						// remove the line after the animation
-						ft.setOnFinished(new EventHandler<ActionEvent>() {
-							@Override
-							public void handle(ActionEvent event) {
-								rootGroup.getChildren().remove(line);
-							}
-						});
+							// remove the line after the animation
+							ft.setOnFinished(new EventHandler<ActionEvent>() {
+								@Override
+								public void handle(ActionEvent event) {
+									rootGroup.getChildren().remove(line);
+								}
+							});
+						}
 					}
 				}
 			};

@@ -132,12 +132,15 @@ public class World {
 	 * @return all {@link Resource}s on the map
 	 */
 	public Set<Resource> getAllExistingResources() {
-		Set<Resource> resources = new HashSet<Resource>();
-		for (WorldObject worldObject : objects) {
-			if (worldObject instanceof Resource)
-				resources.add((Resource) worldObject);
+		synchronized (objects) {
+			Set<Resource> resources = new HashSet<Resource>();
+			for (WorldObject worldObject : objects) {
+				if (worldObject instanceof Resource)
+					resources.add((Resource) worldObject);
+			}
+
+			return resources;
 		}
-		return resources;
 	}
 
 	/**

@@ -14,7 +14,7 @@ import business.logicalObjects.Interaction;
  * @author Steven Schwenke
  * 
  */
-public class World implements WorldObject {
+public class World {
 
 	/** the user interface that displays the world graphicaly */
 	private UserInterface userInterface;
@@ -36,13 +36,16 @@ public class World implements WorldObject {
 		super();
 	}
 
-	public void init(UserInterface userInterface, double width, double height) {
+	public void init(UserInterface userInterface, double width, double height,
+			boolean addSomeObjects) {
 		this.userInterface = userInterface;
 		this.width = width;
 		this.height = height;
 		objects = new HashSet<WorldObject>();
 
-		addSomeObjects();
+		if (addSomeObjects) {
+			addSomeObjects();
+		}
 	}
 
 	/**
@@ -73,9 +76,11 @@ public class World implements WorldObject {
 	 *            object to add to the world and display
 	 */
 	public void addWorldObject(WorldObject newObject) {
-		objects.add(newObject);
-
+		synchronized (objects) {
+			objects.add(newObject);
+		}
 		userInterface.notifyCreation(newObject);
+
 	}
 
 	/**
@@ -86,8 +91,10 @@ public class World implements WorldObject {
 	 *            object to remove from the world
 	 */
 	public void removeWorldObject(WorldObject object) {
-		objects.remove(object);
-		userInterface.notifyDisappearance(object);
+		synchronized (objects) {
+			objects.remove(object);
+			userInterface.notifyDisappearance(object);
+		}
 	}
 
 	/**

@@ -20,4 +20,9 @@ public class Resource implements WorldObject {
 	public CartesianCoordinate getPosition() {
 		return position;
 	}
+
+	@Override
+	public void destroy() {
+		World.getInstance().removeWorldObject(this);
+	}
 }

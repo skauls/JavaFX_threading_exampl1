@@ -33,18 +33,22 @@ public class Colony implements WorldObject {
 
 	private long availableEnergy;
 
+	/** Task that runs repeatedly to gather resources */
+	private TimerTask resourceTimerTask;
+
 	public Colony(GroupMembership groupMembership, CartesianCoordinate position) {
 		super();
 		this.groupMembership = groupMembership;
 		this.position = position;
 		availableEnergy = 0;
 
-		new Timer().schedule(new TimerTask() {
+		resourceTimerTask = new TimerTask() {
 			@Override
 			public void run() {
 				acquireNearestResource();
 			}
-		}, 0, 4000);
+		};
+		new Timer().schedule(resourceTimerTask, 0, 4000);
 	}
 
 	/**
@@ -67,7 +71,7 @@ public class Colony implements WorldObject {
 		World.getInstance()
 				.interact(Interaction.HARVEST, this, nearestResource);
 
-		World.getInstance().removeWorldObject(nearestResource);
+		nearestResource.destroy();
 		availableEnergy++;
 	}
 
@@ -91,6 +95,41 @@ public class Colony implements WorldObject {
 						.getX(), coordinate.getY())));
 		availableEnergy -= distance / COLONIZE_RADIUS_PER_UNIT_ENERGY;
 		return true;
+	}
+
+	/**
+	 * Attacks a colony.
+	 * 
+	 * @param attackedColony
+	 *            that should be attacked by this colony
+	 */
+	public void attack(Colony attackedColony) {
+
+		if (attackedColony.equals(this)) {
+			throw new RuntimeException("Colonies don't attack themselves.");
+			// TODO There should be a layer or a defined handling of such
+			// exceptions. The idea is that every unusual state throws an
+			// exception which gets caught by the UI. That way, every anormal
+			// state gets processed by the UI and the business layer stays
+			// clean.
+		}
+
+		long energyAttacked = attackedColony.getAvailableEnergy();
+
+		if (energyAttacked > availableEnergy) {
+			attackedColony.setAvailableEnergy(energyAttacked - availableEnergy);
+			setAvailableEnergy(0);
+		} else if (energyAttacked < availableEnergy) {
+			setAvailableEnergy(availableEnergy - energyAttacked);
+			attackedColony.destroy();
+		}
+	}
+
+	@Override
+	public void destroy() {
+		setAvailableEnergy(0);
+		resourceTimerTask.cancel();
+		World.getInstance().removeWorldObject(this);
 	}
 
 	public GroupMembership getGroupMembership() {
@@ -123,4 +162,33 @@ public class Colony implements WorldObject {
 		return availableEnergy * COLONIZE_RADIUS_PER_UNIT_ENERGY;
 	}
 
+	@Override
+	public int hashCode() {
+		final int prime = 31;
+		int result = 1;
+		result = prime * result
+				+ ((groupMembership == null) ? 0 : groupMembership.hashCode());
+		result = prime * result
+				+ ((position == null) ? 0 : position.hashCode());
+		return result;
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		Colony other = (Colony) obj;
+		if (groupMembership != other.groupMembership)
+			return false;
+		if (position == null) {
+			if (other.position != null)
+				return false;
+		} else if (!position.equals(other.position))
+			return false;
+		return true;
+	}
 }

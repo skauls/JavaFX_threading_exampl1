@@ -71,7 +71,7 @@ public class JavaFxApplication extends Application implements UserInterface {
 		rootGroup = new Group();
 
 		world = World.getInstance();
-		world.init(this, 1024d, 768d);
+		world.init(this, 1024d, 768d, true);
 
 		addRootButton();
 		addMessageLabel();
@@ -269,19 +269,32 @@ public class JavaFxApplication extends Application implements UserInterface {
 	// anlegen, welche von BO auf FX mappt, damit das hier nicht mehr so
 	// hässlich ist
 	@Override
-	public void notifyDisappearance(WorldObject newWorldObject) {
-		for (Node n : rootGroup.getChildren()) {
-			if (n instanceof ResourceFX) {
+	public synchronized void notifyDisappearance(WorldObject object) {
 
-				final ResourceFX s = (ResourceFX) n;
-				if (s.getRepresentedResource().equals(newWorldObject)) {
-					Platform.runLater(new Runnable() {
-						@Override
-						public void run() {
-							rootGroup.getChildren().remove(s);
-						}
-					});
-					return;
+		synchronized (rootGroup) {
+
+			for (final Node n : rootGroup.getChildren()) {
+				if (n instanceof ResourceFX) {
+
+					final ResourceFX s = (ResourceFX) n;
+					if (s.getRepresentedResource().equals(object)) {
+						Platform.runLater(new Runnable() {
+							@Override
+							public void run() {
+								rootGroup.getChildren().remove(s);
+							}
+						});
+						return;
+					}
+				} else if ((n instanceof ColonyFX)
+						&& (object instanceof Colony)) {
+
+					final ColonyFX c = (ColonyFX) n;
+					if (c.getRepresentedColony().equals(object)) {
+						c.setVisible(false);
+						rootGroup.getChildren().remove(c);
+						return;
+					}
 				}
 			}
 		}

@@ -143,6 +143,14 @@ public class ColonyFXMouseOverPane extends TitledPane {
 		colonizeButton.setOnAction(new ColonizeEventHandler(colonyFX
 				.getRepresentedColony()));
 
+		// Attack Button
+		final Button attackButton = new Button("Attack");
+		GridPane.setConstraints(attackButton, 1, 2);
+		GridPane.setHalignment(attackButton, HPos.RIGHT);
+		content.add(attackButton);
+		attackButton.setOnAction(new AttackEventHandler(colonyFX
+				.getRepresentedColony()));
+
 		return pane;
 	}
 

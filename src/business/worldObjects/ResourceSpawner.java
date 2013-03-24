@@ -60,6 +60,11 @@ public class ResourceSpawner implements WorldObject {
 		World.getInstance().addWorldObject(newRessource);
 	}
 
+	@Override
+	public void destroy() {
+		World.getInstance().removeWorldObject(this);
+	}
+
 	/**
 	 * @return the amount of spawned resources of this spawner.
 	 */
@@ -82,4 +87,5 @@ public class ResourceSpawner implements WorldObject {
 	public void setRadius(double radius) {
 		this.radius = radius;
 	}
+
 }

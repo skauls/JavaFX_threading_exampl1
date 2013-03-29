@@ -1,4 +1,4 @@
-package main.java.ui;
+package main.java.business;
 
 import main.java.business.logicalObjects.GameState;
 import main.java.business.logicalObjects.Interaction;

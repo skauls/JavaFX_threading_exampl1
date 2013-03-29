@@ -3,12 +3,12 @@ package main.java.business.worldObjects;
 import java.util.HashSet;
 import java.util.Set;
 
+import main.java.business.UserInterface;
 import main.java.business.logicalObjects.CartesianCoordinate;
 import main.java.business.logicalObjects.GameState;
 import main.java.business.logicalObjects.GameStateManager;
 import main.java.business.logicalObjects.GroupMembership;
 import main.java.business.logicalObjects.Interaction;
-import main.java.ui.UserInterface;
 
 
 /**

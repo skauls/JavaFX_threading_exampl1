@@ -2,11 +2,11 @@ package test.java.business.worldObjects;
 
 import static org.junit.Assert.assertEquals;
 
+import main.java.business.UserInterface;
 import main.java.business.logicalObjects.CartesianCoordinate;
 import main.java.business.logicalObjects.GroupMembership;
 import main.java.business.worldObjects.Colony;
 import main.java.business.worldObjects.World;
-import main.java.ui.UserInterface;
 
 import org.junit.Before;
 import org.junit.Test;

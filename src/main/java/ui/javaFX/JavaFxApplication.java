@@ -3,6 +3,7 @@ package main.java.ui.javaFX;
 import java.util.Timer;
 import java.util.TimerTask;
 
+import main.java.business.UserInterface;
 import main.java.business.logicalObjects.GameState;
 import main.java.business.logicalObjects.Interaction;
 import main.java.business.worldObjects.Colony;
@@ -10,7 +11,6 @@ import main.java.business.worldObjects.Resource;
 import main.java.business.worldObjects.ResourceSpawner;
 import main.java.business.worldObjects.World;
 import main.java.business.worldObjects.WorldObject;
-import main.java.ui.UserInterface;
 import main.java.ui.javaFX.interfaceObjects.RootInfoPane;
 import main.java.ui.javaFX.worldObjects.ColonyFX;
 import main.java.ui.javaFX.worldObjects.ResourceFX;

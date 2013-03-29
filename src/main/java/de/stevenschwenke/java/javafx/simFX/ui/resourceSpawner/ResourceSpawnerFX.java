@@ -1,12 +1,13 @@
 package de.stevenschwenke.java.javafx.simFX.ui.resourceSpawner;
 
-import de.stevenschwenke.java.javafx.simFX.business.worldObjects.ResourceSpawner;
-import de.stevenschwenke.java.javafx.simFX.ui.javaFX.JavaFxApplication;
 import javafx.event.EventHandler;
 import javafx.scene.control.Button;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Circle;
+import de.stevenschwenke.java.javafx.simFX.business.worldObjects.ResourceSpawner;
+import de.stevenschwenke.java.javafx.simFX.ui.javaFX.JavaFxApplication;
+import de.stevenschwenke.java.javafx.simFX.ui.rootButton.RootButton;
 
 /**
  * Graphical representation of a {@link RessourceSpawnerRepresentation} for
@@ -39,7 +40,7 @@ public class ResourceSpawnerFX extends Button {
 		this.setLayoutY(representedResourceSpawner.getPosition().getY());
 		this.setText("R");
 
-		this.setVisible(JavaFxApplication.getInstance().isRootMode());
+		this.setVisible(RootButton.getInstance().isRootMode());
 
 		radiusCircle = new Circle(representedResourceSpawner.getPosition()
 				.getX(), representedResourceSpawner.getPosition().getY(),

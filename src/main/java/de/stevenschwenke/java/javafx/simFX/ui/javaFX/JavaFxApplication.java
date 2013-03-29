@@ -28,7 +28,6 @@ import de.stevenschwenke.java.javafx.simFX.business.worldObjects.WorldObject;
 import de.stevenschwenke.java.javafx.simFX.ui.colony.ColonyFX;
 import de.stevenschwenke.java.javafx.simFX.ui.resource.ResourceFX;
 import de.stevenschwenke.java.javafx.simFX.ui.resourceSpawner.ResourceSpawnerFX;
-import de.stevenschwenke.java.javafx.simFX.ui.rootButton.RootButton;
 
 /**
  * User Interface with JavaFX. This class starts a JavaFX application and
@@ -52,8 +51,6 @@ public class JavaFxApplication extends Application implements UserInterface {
 
 	private Scene scene;
 
-	private RootButton rootButton;
-
 	public static JavaFxApplication getInstance() {
 		if (instance == null) {
 			throw new RuntimeException(
@@ -68,7 +65,6 @@ public class JavaFxApplication extends Application implements UserInterface {
 		world = World.getInstance();
 		world.init(this, 1024d, 768d, true);
 
-		rootButton = new RootButton();
 		addMessageLabel();
 
 		scene = new Scene(rootGroup, world.getWidth(), world.getHeight());
@@ -165,10 +161,6 @@ public class JavaFxApplication extends Application implements UserInterface {
 
 	public Group getRootGroup() {
 		return rootGroup;
-	}
-
-	public boolean isRootMode() {
-		return rootButton.isRootMode();
 	}
 
 	// TODO this should be refactored into a separate AnimationFX-class

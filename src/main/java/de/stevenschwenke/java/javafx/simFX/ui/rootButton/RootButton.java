@@ -18,12 +18,21 @@ import de.stevenschwenke.java.javafx.simFX.ui.resourceSpawner.ResourceSpawnerFX;
  */
 public class RootButton extends Button {
 
+	private static RootButton instance;
+
 	/** if enabled, the user can manipulate the world */
 	private boolean rootMode = false;
 
 	private TitledPane rootInfoPane;
 
-	public RootButton() {
+	public static RootButton getInstance() {
+		if (instance == null) {
+			instance = new RootButton();
+		}
+		return instance;
+	}
+
+	private RootButton() {
 		final Button rootButton = new Button("Root");
 		rootButton.setLayoutX(World.getInstance().getWidth() - 50);
 		rootButton.setLayoutY(10);

@@ -1,12 +1,13 @@
 package de.stevenschwenke.java.javafx.simFX.ui.colony;
 
-import de.stevenschwenke.java.javafx.simFX.business.logicalObjects.GroupMembership;
-import de.stevenschwenke.java.javafx.simFX.business.worldObjects.Colony;
-import de.stevenschwenke.java.javafx.simFX.ui.javaFX.JavaFxApplication;
 import javafx.event.EventHandler;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
+import de.stevenschwenke.java.javafx.simFX.business.logicalObjects.GroupMembership;
+import de.stevenschwenke.java.javafx.simFX.business.worldObjects.Colony;
+import de.stevenschwenke.java.javafx.simFX.ui.javaFX.JavaFxApplication;
+import de.stevenschwenke.java.javafx.simFX.ui.rootButton.RootButton;
 
 /**
  * Graphical representation of a {@link Colony} for JavaFX.
@@ -44,8 +45,7 @@ public class ColonyFX extends ImageView {
 					public void handle(MouseEvent event) {
 						if (!representedColony.getGroupMembership().equals(
 								GroupMembership.PLAYER)
-								&& !JavaFxApplication.getInstance()
-										.isRootMode()) {
+								&& !RootButton.getInstance().isRootMode()) {
 							return;
 						}
 						ColonyFXMouseOverPane mouseOverPane = new ColonyFXMouseOverPane(

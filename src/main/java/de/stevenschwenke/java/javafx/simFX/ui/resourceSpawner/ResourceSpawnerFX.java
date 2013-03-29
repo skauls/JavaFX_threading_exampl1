@@ -1,8 +1,7 @@
-package de.stevenschwenke.java.javafx.simFX.ui.javaFX.worldObjects;
+package de.stevenschwenke.java.javafx.simFX.ui.resourceSpawner;
 
 import de.stevenschwenke.java.javafx.simFX.business.worldObjects.ResourceSpawner;
 import de.stevenschwenke.java.javafx.simFX.ui.javaFX.JavaFxApplication;
-import de.stevenschwenke.java.javafx.simFX.ui.javaFX.interfaceObjects.ResourceSpawnerFXMouseOverPane;
 import javafx.event.EventHandler;
 import javafx.scene.control.Button;
 import javafx.scene.input.MouseEvent;

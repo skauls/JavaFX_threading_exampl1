@@ -1,8 +1,7 @@
-package de.stevenschwenke.java.javafx.simFX.ui.javaFX.interfaceObjects;
+package de.stevenschwenke.java.javafx.simFX.ui.colony;
 
 import de.stevenschwenke.java.javafx.simFX.business.worldObjects.Colony;
 import de.stevenschwenke.java.javafx.simFX.ui.javaFX.JavaFxApplication;
-import de.stevenschwenke.java.javafx.simFX.ui.javaFX.worldObjects.ColonyFX;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.scene.Cursor;

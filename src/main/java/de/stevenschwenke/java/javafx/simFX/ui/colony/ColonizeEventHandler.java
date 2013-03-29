@@ -1,4 +1,4 @@
-package de.stevenschwenke.java.javafx.simFX.ui.javaFX.interfaceObjects;
+package de.stevenschwenke.java.javafx.simFX.ui.colony;
 
 import de.stevenschwenke.java.javafx.simFX.business.logicalObjects.CartesianCoordinate;
 import de.stevenschwenke.java.javafx.simFX.business.worldObjects.Colony;

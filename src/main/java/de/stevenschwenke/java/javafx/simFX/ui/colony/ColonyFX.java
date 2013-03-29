@@ -1,9 +1,8 @@
-package de.stevenschwenke.java.javafx.simFX.ui.javaFX.worldObjects;
+package de.stevenschwenke.java.javafx.simFX.ui.colony;
 
 import de.stevenschwenke.java.javafx.simFX.business.logicalObjects.GroupMembership;
 import de.stevenschwenke.java.javafx.simFX.business.worldObjects.Colony;
 import de.stevenschwenke.java.javafx.simFX.ui.javaFX.JavaFxApplication;
-import de.stevenschwenke.java.javafx.simFX.ui.javaFX.interfaceObjects.ColonyFXMouseOverPane;
 import javafx.event.EventHandler;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;

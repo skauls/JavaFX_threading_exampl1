@@ -3,18 +3,6 @@ package de.stevenschwenke.java.javafx.simFX.ui.javaFX;
 import java.util.Timer;
 import java.util.TimerTask;
 
-import de.stevenschwenke.java.javafx.simFX.business.UserInterface;
-import de.stevenschwenke.java.javafx.simFX.business.logicalObjects.GameState;
-import de.stevenschwenke.java.javafx.simFX.business.logicalObjects.Interaction;
-import de.stevenschwenke.java.javafx.simFX.business.worldObjects.Colony;
-import de.stevenschwenke.java.javafx.simFX.business.worldObjects.Resource;
-import de.stevenschwenke.java.javafx.simFX.business.worldObjects.ResourceSpawner;
-import de.stevenschwenke.java.javafx.simFX.business.worldObjects.World;
-import de.stevenschwenke.java.javafx.simFX.business.worldObjects.WorldObject;
-import de.stevenschwenke.java.javafx.simFX.ui.javaFX.worldObjects.ColonyFX;
-import de.stevenschwenke.java.javafx.simFX.ui.javaFX.worldObjects.ResourceFX;
-import de.stevenschwenke.java.javafx.simFX.ui.javaFX.worldObjects.ResourceSpawnerFX;
-
 import javafx.animation.FadeTransition;
 import javafx.application.Application;
 import javafx.application.Platform;
@@ -24,14 +12,23 @@ import javafx.geometry.Pos;
 import javafx.scene.Group;
 import javafx.scene.Node;
 import javafx.scene.Scene;
-import javafx.scene.control.Button;
 import javafx.scene.control.Label;
-import javafx.scene.control.TitledPane;
-import javafx.scene.input.MouseEvent;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Line;
 import javafx.stage.Stage;
 import javafx.util.Duration;
+import de.stevenschwenke.java.javafx.simFX.business.UserInterface;
+import de.stevenschwenke.java.javafx.simFX.business.logicalObjects.GameState;
+import de.stevenschwenke.java.javafx.simFX.business.logicalObjects.Interaction;
+import de.stevenschwenke.java.javafx.simFX.business.worldObjects.Colony;
+import de.stevenschwenke.java.javafx.simFX.business.worldObjects.Resource;
+import de.stevenschwenke.java.javafx.simFX.business.worldObjects.ResourceSpawner;
+import de.stevenschwenke.java.javafx.simFX.business.worldObjects.World;
+import de.stevenschwenke.java.javafx.simFX.business.worldObjects.WorldObject;
+import de.stevenschwenke.java.javafx.simFX.ui.colony.ColonyFX;
+import de.stevenschwenke.java.javafx.simFX.ui.resource.ResourceFX;
+import de.stevenschwenke.java.javafx.simFX.ui.resourceSpawner.ResourceSpawnerFX;
+import de.stevenschwenke.java.javafx.simFX.ui.rootButton.RootButton;
 
 /**
  * User Interface with JavaFX. This class starts a JavaFX application and
@@ -45,9 +42,6 @@ public class JavaFxApplication extends Application implements UserInterface {
 	/** World that is represented by this application */
 	private static World world;
 
-	/** if enabled, the user can manipulate the world */
-	private boolean rootMode = false;
-
 	private Group rootGroup;
 
 	private static JavaFxApplication instance;
@@ -58,7 +52,7 @@ public class JavaFxApplication extends Application implements UserInterface {
 
 	private Scene scene;
 
-	private TitledPane rootInfoPane;
+	private RootButton rootButton;
 
 	public static JavaFxApplication getInstance() {
 		if (instance == null) {
@@ -74,45 +68,12 @@ public class JavaFxApplication extends Application implements UserInterface {
 		world = World.getInstance();
 		world.init(this, 1024d, 768d, true);
 
-		addRootButton();
+		rootButton = new RootButton();
 		addMessageLabel();
 
 		scene = new Scene(rootGroup, world.getWidth(), world.getHeight());
 		scene.setFill(Color.DIMGRAY);
 		primaryStage.setScene(scene);
-	}
-
-	/**
-	 * Adds a button to the upper right edge of the screen which enables or
-	 * disables the root-mode. This mode allows for manipulation of the world.
-	 */
-	private void addRootButton() {
-		final Button rootButton = new Button("Root");
-		rootButton.setLayoutX(world.getWidth() - 50);
-		rootButton.setLayoutY(10);
-
-		rootButton.addEventFilter(MouseEvent.MOUSE_CLICKED,
-				new EventHandler<MouseEvent>() {
-
-					@Override
-					public void handle(MouseEvent event) {
-						rootMode = !rootMode;
-
-						if (rootMode) {
-							rootButton.setStyle("-fx-base: #a00;");
-							showRootInfoArea();
-						} else {
-							rootButton.setStyle("-fx-base: #aaa;");
-							rootGroup.getChildren().remove(rootInfoPane);
-						}
-						for (Node n : rootGroup.getChildren()) {
-							if (n instanceof ResourceSpawnerFX)
-								((ResourceSpawnerFX) n).setVisible(rootMode);
-						}
-					}
-				});
-
-		rootGroup.getChildren().add(rootButton);
 	}
 
 	/**
@@ -129,14 +90,6 @@ public class JavaFxApplication extends Application implements UserInterface {
 		}
 
 		postToMessageLabel("Initialized");
-	}
-
-	/**
-	 * Shows a text area with information about the world.
-	 */
-	private void showRootInfoArea() {
-		rootInfoPane = new RootInfoPane();
-		rootGroup.getChildren().add(rootInfoPane);
 	}
 
 	/**
@@ -215,7 +168,7 @@ public class JavaFxApplication extends Application implements UserInterface {
 	}
 
 	public boolean isRootMode() {
-		return rootMode;
+		return rootButton.isRootMode();
 	}
 
 	// TODO this should be refactored into a separate AnimationFX-class

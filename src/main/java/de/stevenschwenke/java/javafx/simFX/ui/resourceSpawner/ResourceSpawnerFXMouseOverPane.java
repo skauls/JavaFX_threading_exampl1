@@ -1,8 +1,7 @@
-package de.stevenschwenke.java.javafx.simFX.ui.javaFX.interfaceObjects;
+package de.stevenschwenke.java.javafx.simFX.ui.resourceSpawner;
 
 import de.stevenschwenke.java.javafx.simFX.business.worldObjects.ResourceSpawner;
 import de.stevenschwenke.java.javafx.simFX.ui.javaFX.JavaFxApplication;
-import de.stevenschwenke.java.javafx.simFX.ui.javaFX.worldObjects.ResourceSpawnerFX;
 import javafx.animation.ScaleTransition;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;

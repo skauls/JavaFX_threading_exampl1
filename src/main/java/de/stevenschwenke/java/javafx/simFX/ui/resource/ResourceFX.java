@@ -1,4 +1,4 @@
-package de.stevenschwenke.java.javafx.simFX.ui.javaFX.worldObjects;
+package de.stevenschwenke.java.javafx.simFX.ui.resource;
 
 import de.stevenschwenke.java.javafx.simFX.business.worldObjects.Resource;
 import javafx.animation.FadeTransition;

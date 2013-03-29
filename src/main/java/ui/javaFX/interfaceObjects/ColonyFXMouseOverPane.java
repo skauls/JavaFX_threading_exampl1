@@ -1,8 +1,5 @@
-package main.java.ui.javaFX.interfaceObjects;
+package ui.javaFX.interfaceObjects;
 
-import main.java.business.worldObjects.Colony;
-import main.java.ui.javaFX.JavaFxApplication;
-import main.java.ui.javaFX.worldObjects.ColonyFX;
 import javafx.animation.ScaleTransition;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -19,6 +16,9 @@ import javafx.scene.layout.GridPane;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Circle;
 import javafx.util.Duration;
+import ui.javaFX.JavaFxApplication;
+import ui.javaFX.worldObjects.ColonyFX;
+import business.worldObjects.Colony;
 
 /**
  * Pane that opens when hovering over a {@link ColonyFX}.

@@ -1,9 +1,8 @@
-package main.java.business.logicalObjects;
+package business.logicalObjects;
 
 import java.util.Set;
 
-import main.java.business.worldObjects.Resource;
-
+import business.worldObjects.Resource;
 
 /**
  * Provides geographical logic.

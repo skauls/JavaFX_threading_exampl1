@@ -1,9 +1,8 @@
-package main.java.business.logicalObjects;
+package business.logicalObjects;
 
-import main.java.business.worldObjects.Colony;
-import main.java.business.worldObjects.Resource;
-import main.java.business.worldObjects.World;
-import main.java.business.worldObjects.WorldObject;
+import business.worldObjects.Colony;
+import business.worldObjects.World;
+import business.worldObjects.WorldObject;
 
 /**
  * This class holds all UI-relevant interactions between {@link WorldObject}s.

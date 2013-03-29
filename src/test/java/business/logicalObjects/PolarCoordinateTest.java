@@ -1,12 +1,8 @@
-package test.java.business.logicalObjects;
+package business.logicalObjects;
 
 import static org.junit.Assert.assertEquals;
 
-import main.java.business.logicalObjects.CartesianCoordinate;
-import main.java.business.logicalObjects.PolarCoordinate;
-
 import org.junit.Test;
-
 
 /**
  * Tests for {@link PolarCoordinate}.
@@ -23,7 +19,6 @@ public class PolarCoordinateTest {
 
 	@Test
 	public void nullVectorToCartesianCoordinatesTest() {
-
 		PolarCoordinate pc = new PolarCoordinate(90, 0);
 
 		CartesianCoordinate cc = pc.toCartesianCoordinates();

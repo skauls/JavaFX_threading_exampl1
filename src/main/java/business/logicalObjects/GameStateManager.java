@@ -1,7 +1,7 @@
-package main.java.business.logicalObjects;
+package business.logicalObjects;
 
-import main.java.business.worldObjects.Colony;
-import main.java.business.worldObjects.World;
+import business.worldObjects.Colony;
+import business.worldObjects.World;
 
 /**
  * Class that manages the state of the game. Currently, there are two States:

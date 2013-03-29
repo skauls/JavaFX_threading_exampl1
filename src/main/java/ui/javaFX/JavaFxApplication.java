@@ -1,20 +1,7 @@
-package main.java.ui.javaFX;
+package ui.javaFX;
 
 import java.util.Timer;
 import java.util.TimerTask;
-
-import main.java.business.UserInterface;
-import main.java.business.logicalObjects.GameState;
-import main.java.business.logicalObjects.Interaction;
-import main.java.business.worldObjects.Colony;
-import main.java.business.worldObjects.Resource;
-import main.java.business.worldObjects.ResourceSpawner;
-import main.java.business.worldObjects.World;
-import main.java.business.worldObjects.WorldObject;
-import main.java.ui.javaFX.interfaceObjects.RootInfoPane;
-import main.java.ui.javaFX.worldObjects.ColonyFX;
-import main.java.ui.javaFX.worldObjects.ResourceFX;
-import main.java.ui.javaFX.worldObjects.ResourceSpawnerFX;
 
 import javafx.animation.FadeTransition;
 import javafx.application.Application;
@@ -33,6 +20,18 @@ import javafx.scene.paint.Color;
 import javafx.scene.shape.Line;
 import javafx.stage.Stage;
 import javafx.util.Duration;
+import ui.javaFX.interfaceObjects.RootInfoPane;
+import ui.javaFX.worldObjects.ColonyFX;
+import ui.javaFX.worldObjects.ResourceFX;
+import ui.javaFX.worldObjects.ResourceSpawnerFX;
+import business.UserInterface;
+import business.logicalObjects.GameState;
+import business.logicalObjects.Interaction;
+import business.worldObjects.Colony;
+import business.worldObjects.Resource;
+import business.worldObjects.ResourceSpawner;
+import business.worldObjects.World;
+import business.worldObjects.WorldObject;
 
 /**
  * User Interface with JavaFX. This class starts a JavaFX application and

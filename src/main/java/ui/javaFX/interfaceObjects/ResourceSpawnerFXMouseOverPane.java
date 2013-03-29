@@ -1,8 +1,5 @@
-package main.java.ui.javaFX.interfaceObjects;
+package ui.javaFX.interfaceObjects;
 
-import main.java.business.worldObjects.ResourceSpawner;
-import main.java.ui.javaFX.JavaFxApplication;
-import main.java.ui.javaFX.worldObjects.ResourceSpawnerFX;
 import javafx.animation.ScaleTransition;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -18,6 +15,9 @@ import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.ColumnConstraints;
 import javafx.scene.layout.GridPane;
 import javafx.util.Duration;
+import ui.javaFX.JavaFxApplication;
+import ui.javaFX.worldObjects.ResourceSpawnerFX;
+import business.worldObjects.ResourceSpawner;
 
 /**
  * Pane that opens when hovering over a {@link ResourceSpawnerFX}.
@@ -33,7 +33,8 @@ public class ResourceSpawnerFXMouseOverPane extends TitledPane {
 	private ResourceSpawnerFX resourceSpawnerFX;
 	private static Label resourceLabel;
 
-	public ResourceSpawnerFXMouseOverPane(final ResourceSpawnerFX resourceSpawnerFX) {
+	public ResourceSpawnerFXMouseOverPane(
+			final ResourceSpawnerFX resourceSpawnerFX) {
 		super("RessourceSpawner", createGridPane(resourceSpawnerFX));
 
 		this.resourceSpawnerFX = resourceSpawnerFX;

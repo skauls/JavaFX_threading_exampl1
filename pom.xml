@@ -7,8 +7,16 @@
 	<version>0.0.1-SNAPSHOT</version>
 	
 	<build>
-		<sourceDirectory>src/main/java</sourceDirectory>
-		<testSourceDirectory>src/test/java</testSourceDirectory>
+	
+	
+<!--     <sourceDirectory>D:\workspace_maven\MyApp\src\main\java</sourceDirectory> -->
+<!--     <scriptSourceDirectory>D:\workspace_maven\MyApp\src\main\scripts</scriptSourceDirectory> -->
+<!--     <testSourceDirectory>D:\workspace_maven\MyApp\src\test\java</testSourceDirectory> -->
+<!--     <outputDirectory>D:\workspace_maven\MyApp\target\classes</outputDirectory> -->
+<!--     <testOutputDirectory>D:\workspace_maven\MyApp\target\test-classes</testOutputDirectory> -->
+    
+		<sourceDirectory>src\main\java</sourceDirectory>
+		<testSourceDirectory>src\test\java</testSourceDirectory>
 
 		<resources>
 			<resource>

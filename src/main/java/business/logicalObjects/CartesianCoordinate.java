@@ -1,4 +1,4 @@
-package main.java.business.logicalObjects;
+package business.logicalObjects;
 
 /**
  * Represents a point in a 2-dimensional space.

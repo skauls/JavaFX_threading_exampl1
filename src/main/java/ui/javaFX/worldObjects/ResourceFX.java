@@ -1,11 +1,11 @@
-package main.java.ui.javaFX.worldObjects;
+package ui.javaFX.worldObjects;
 
 import javafx.animation.FadeTransition;
 import javafx.animation.ScaleTransition;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.util.Duration;
-import main.java.business.worldObjects.Resource;
+import business.worldObjects.Resource;
 
 /**
  * Graphical representation of a {@link Resource} for JavaFX.

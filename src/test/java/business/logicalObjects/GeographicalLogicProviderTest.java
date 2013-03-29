@@ -1,4 +1,4 @@
-package test.java.business.logicalObjects;
+package business.logicalObjects;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNull;
@@ -6,12 +6,9 @@ import static org.junit.Assert.assertNull;
 import java.util.HashSet;
 import java.util.Set;
 
-import main.java.business.logicalObjects.CartesianCoordinate;
-import main.java.business.logicalObjects.GeographicalLogicProvider;
-import main.java.business.worldObjects.Resource;
-
 import org.junit.Test;
 
+import business.worldObjects.Resource;
 
 /**
  * Test for {@link GeographicalLogicProvider}.

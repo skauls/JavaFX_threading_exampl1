@@ -1,9 +1,8 @@
-package main.java.business.worldObjects;
+package business.worldObjects;
 
 import java.util.TimerTask;
 
-import main.java.business.logicalObjects.CartesianCoordinate;
-
+import business.logicalObjects.CartesianCoordinate;
 
 /**
  * All objects that are meant to be displayed in the user interface have to

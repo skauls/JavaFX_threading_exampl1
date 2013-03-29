@@ -1,11 +1,11 @@
-package main.java.ui.javaFX.interfaceObjects;
+package ui.javaFX.interfaceObjects;
 
-import main.java.business.worldObjects.World;
 import javafx.event.Event;
 import javafx.event.EventHandler;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TitledPane;
 import javafx.scene.input.MouseEvent;
+import business.worldObjects.World;
 
 /**
  * Pane showing information about the world during root mode.

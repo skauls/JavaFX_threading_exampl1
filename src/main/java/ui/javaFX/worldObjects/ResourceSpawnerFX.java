@@ -1,13 +1,13 @@
-package main.java.ui.javaFX.worldObjects;
+package ui.javaFX.worldObjects;
 
-import main.java.business.worldObjects.ResourceSpawner;
-import main.java.ui.javaFX.JavaFxApplication;
-import main.java.ui.javaFX.interfaceObjects.ResourceSpawnerFXMouseOverPane;
 import javafx.event.EventHandler;
 import javafx.scene.control.Button;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Circle;
+import ui.javaFX.JavaFxApplication;
+import ui.javaFX.interfaceObjects.ResourceSpawnerFXMouseOverPane;
+import business.worldObjects.ResourceSpawner;
 
 /**
  * Graphical representation of a {@link RessourceSpawnerRepresentation} for

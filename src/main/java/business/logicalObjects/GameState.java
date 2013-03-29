@@ -1,4 +1,4 @@
-package main.java.business.logicalObjects;
+package business.logicalObjects;
 
 /**
  * States in which the game can be.

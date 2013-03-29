@@ -1,6 +1,6 @@
-package main.java.business.worldObjects;
+package business.worldObjects;
 
-import main.java.business.logicalObjects.CartesianCoordinate;
+import business.logicalObjects.CartesianCoordinate;
 
 /**
  * A resource.

@@ -1,4 +1,4 @@
-package main.java.business.worldObjects;
+package business.worldObjects;
 
 import java.util.HashSet;
 import java.util.Random;
@@ -6,9 +6,8 @@ import java.util.Set;
 import java.util.Timer;
 import java.util.TimerTask;
 
-import main.java.business.logicalObjects.CartesianCoordinate;
-import main.java.business.logicalObjects.PolarCoordinate;
-
+import business.logicalObjects.CartesianCoordinate;
+import business.logicalObjects.PolarCoordinate;
 
 /**
  * Let the user spawn {@link Resource}s manually.

@@ -1,14 +1,13 @@
-package main.java.business.worldObjects;
+package business.worldObjects;
 
 import java.util.Timer;
 import java.util.TimerTask;
 
-import main.java.business.logicalObjects.CartesianCoordinate;
-import main.java.business.logicalObjects.GameStateManager;
-import main.java.business.logicalObjects.GeographicalLogicProvider;
-import main.java.business.logicalObjects.GroupMembership;
-import main.java.business.logicalObjects.Interaction;
-
+import business.logicalObjects.CartesianCoordinate;
+import business.logicalObjects.GameStateManager;
+import business.logicalObjects.GeographicalLogicProvider;
+import business.logicalObjects.GroupMembership;
+import business.logicalObjects.Interaction;
 
 /**
  * Some kind of base or settlement or colony. Don't know yet.

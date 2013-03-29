@@ -1,4 +1,5 @@
-package main.java.business.logicalObjects;
+package business.logicalObjects;
+
 
 /**
  * Represents a polar coordinate.

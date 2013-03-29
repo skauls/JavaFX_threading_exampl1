@@ -1,4 +1,4 @@
-package main.java.business.logicalObjects;
+package business.logicalObjects;
 
 /**
  * To assign an object in the game to a group.

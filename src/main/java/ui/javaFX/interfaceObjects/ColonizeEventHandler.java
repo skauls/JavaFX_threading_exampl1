@@ -1,12 +1,12 @@
-package main.java.ui.javaFX.interfaceObjects;
+package ui.javaFX.interfaceObjects;
 
-import main.java.business.logicalObjects.CartesianCoordinate;
-import main.java.business.worldObjects.Colony;
-import main.java.ui.javaFX.JavaFxApplication;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.event.EventTarget;
 import javafx.scene.input.MouseEvent;
+import ui.javaFX.JavaFxApplication;
+import business.logicalObjects.CartesianCoordinate;
+import business.worldObjects.Colony;
 
 /**
  * Event handler for creating new colonies.

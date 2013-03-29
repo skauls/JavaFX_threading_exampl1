@@ -1,13 +1,13 @@
-package main.java.ui.javaFX.interfaceObjects;
+package ui.javaFX.interfaceObjects;
 
-import main.java.business.worldObjects.Colony;
-import main.java.ui.javaFX.JavaFxApplication;
-import main.java.ui.javaFX.worldObjects.ColonyFX;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.scene.Cursor;
 import javafx.scene.input.MouseDragEvent;
 import javafx.scene.input.MouseEvent;
+import ui.javaFX.JavaFxApplication;
+import ui.javaFX.worldObjects.ColonyFX;
+import business.worldObjects.Colony;
 
 /**
  * Event handler for attacking foe colonies.

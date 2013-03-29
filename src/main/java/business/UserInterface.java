@@ -1,8 +1,8 @@
-package main.java.business;
+package business;
 
-import main.java.business.logicalObjects.GameState;
-import main.java.business.logicalObjects.Interaction;
-import main.java.business.worldObjects.WorldObject;
+import business.logicalObjects.GameState;
+import business.logicalObjects.Interaction;
+import business.worldObjects.WorldObject;
 
 /**
  * This interface has to be implemented by all base classes for other user

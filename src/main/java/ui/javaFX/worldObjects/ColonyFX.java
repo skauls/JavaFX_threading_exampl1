@@ -1,13 +1,13 @@
-package main.java.ui.javaFX.worldObjects;
+package ui.javaFX.worldObjects;
 
 import javafx.event.EventHandler;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
-import main.java.business.logicalObjects.GroupMembership;
-import main.java.business.worldObjects.Colony;
-import main.java.ui.javaFX.JavaFxApplication;
-import main.java.ui.javaFX.interfaceObjects.ColonyFXMouseOverPane;
+import ui.javaFX.JavaFxApplication;
+import ui.javaFX.interfaceObjects.ColonyFXMouseOverPane;
+import business.logicalObjects.GroupMembership;
+import business.worldObjects.Colony;
 
 /**
  * Graphical representation of a {@link Colony} for JavaFX.

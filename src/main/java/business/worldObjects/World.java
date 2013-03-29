@@ -1,15 +1,14 @@
-package main.java.business.worldObjects;
+package business.worldObjects;
 
 import java.util.HashSet;
 import java.util.Set;
 
-import main.java.business.UserInterface;
-import main.java.business.logicalObjects.CartesianCoordinate;
-import main.java.business.logicalObjects.GameState;
-import main.java.business.logicalObjects.GameStateManager;
-import main.java.business.logicalObjects.GroupMembership;
-import main.java.business.logicalObjects.Interaction;
-
+import business.UserInterface;
+import business.logicalObjects.CartesianCoordinate;
+import business.logicalObjects.GameState;
+import business.logicalObjects.GameStateManager;
+import business.logicalObjects.GroupMembership;
+import business.logicalObjects.Interaction;
 
 /**
  * The world in which the simulation takes place. Singelton.

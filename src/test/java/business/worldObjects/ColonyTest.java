@@ -1,17 +1,14 @@
-package test.java.business.worldObjects;
+package business.worldObjects;
 
 import static org.junit.Assert.assertEquals;
-
-import main.java.business.UserInterface;
-import main.java.business.logicalObjects.CartesianCoordinate;
-import main.java.business.logicalObjects.GroupMembership;
-import main.java.business.worldObjects.Colony;
-import main.java.business.worldObjects.World;
 
 import org.junit.Before;
 import org.junit.Test;
 import org.mockito.Mockito;
 
+import business.UserInterface;
+import business.logicalObjects.CartesianCoordinate;
+import business.logicalObjects.GroupMembership;
 
 /**
  * Tests for {@link Colony}.

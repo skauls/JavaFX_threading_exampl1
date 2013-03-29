@@ -1,6 +1,6 @@
-package main.java.application;
+package application;
 
-import main.java.ui.javaFX.JavaFxApplication;
+import ui.javaFX.JavaFxApplication;
 
 /**
  * Entry point for this project. Here, the used UI framework is chosen. The

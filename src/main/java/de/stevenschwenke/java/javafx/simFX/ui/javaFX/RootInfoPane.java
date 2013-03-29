@@ -1,4 +1,4 @@
-package de.stevenschwenke.java.javafx.simFX.ui.javaFX.interfaceObjects;
+package de.stevenschwenke.java.javafx.simFX.ui.javaFX;
 
 import de.stevenschwenke.java.javafx.simFX.business.worldObjects.World;
 import javafx.event.Event;

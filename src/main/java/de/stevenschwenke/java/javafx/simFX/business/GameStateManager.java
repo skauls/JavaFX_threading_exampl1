@@ -1,5 +1,7 @@
-package de.stevenschwenke.java.javafx.simFX.business.logicalObjects;
+package de.stevenschwenke.java.javafx.simFX.business;
 
+import de.stevenschwenke.java.javafx.simFX.business.logicalObjects.GameState;
+import de.stevenschwenke.java.javafx.simFX.business.logicalObjects.GroupMembership;
 import de.stevenschwenke.java.javafx.simFX.business.worldObjects.Colony;
 import de.stevenschwenke.java.javafx.simFX.business.worldObjects.World;
 

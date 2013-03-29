@@ -1,14 +1,14 @@
 package de.stevenschwenke.java.javafx.simFX.business.worldObjects;
 
+import java.util.Set;
 import java.util.Timer;
 import java.util.TimerTask;
 
+import de.stevenschwenke.java.javafx.simFX.business.GameStateManager;
 import de.stevenschwenke.java.javafx.simFX.business.logicalObjects.CartesianCoordinate;
-import de.stevenschwenke.java.javafx.simFX.business.logicalObjects.GameStateManager;
 import de.stevenschwenke.java.javafx.simFX.business.logicalObjects.GeographicalLogicProvider;
 import de.stevenschwenke.java.javafx.simFX.business.logicalObjects.GroupMembership;
 import de.stevenschwenke.java.javafx.simFX.business.logicalObjects.Interaction;
-
 
 /**
  * Some kind of base or settlement or colony. Don't know yet.
@@ -57,9 +57,8 @@ public class Colony implements WorldObject {
 	 * Acquires the nearest resource and fills the energy of this base.
 	 */
 	private synchronized void acquireNearestResource() {
-		Resource nearestResource = GeographicalLogicProvider
-				.findNearestResource(getPosition(), World.getInstance()
-						.getAllExistingResources());
+		Resource nearestResource = findNearestResource(getPosition(), World
+				.getInstance().getAllExistingResources());
 
 		if (nearestResource == null) // TODO Don't like this to return null.
 			return;
@@ -133,6 +132,32 @@ public class Colony implements WorldObject {
 		setAvailableEnergy(0);
 		resourceTimerTask.cancel();
 		World.getInstance().removeWorldObject(this);
+	}
+
+	/**
+	 * @param coordinate
+	 *            a position on the world map
+	 * @param resources
+	 *            Set of resources to search in
+	 * @return the nearest resource to a given place on the map
+	 */
+	static Resource findNearestResource(CartesianCoordinate coordinate,
+			Set<Resource> resources) {
+
+		Resource nearestResource = null;
+		double distanceToNearestResource = Double.MAX_VALUE;
+
+		for (Resource r : resources) {
+			double distance = GeographicalLogicProvider.calculateDistance(
+					r.getPosition(), coordinate);
+
+			if (distance < distanceToNearestResource) {
+				distanceToNearestResource = distance;
+				nearestResource = r;
+			}
+		}
+
+		return nearestResource;
 	}
 
 	public GroupMembership getGroupMembership() {

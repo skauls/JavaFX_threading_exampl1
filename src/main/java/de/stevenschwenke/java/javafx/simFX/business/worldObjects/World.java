@@ -3,10 +3,10 @@ package de.stevenschwenke.java.javafx.simFX.business.worldObjects;
 import java.util.HashSet;
 import java.util.Set;
 
+import de.stevenschwenke.java.javafx.simFX.business.GameStateManager;
 import de.stevenschwenke.java.javafx.simFX.business.UserInterface;
 import de.stevenschwenke.java.javafx.simFX.business.logicalObjects.CartesianCoordinate;
 import de.stevenschwenke.java.javafx.simFX.business.logicalObjects.GameState;
-import de.stevenschwenke.java.javafx.simFX.business.logicalObjects.GameStateManager;
 import de.stevenschwenke.java.javafx.simFX.business.logicalObjects.GroupMembership;
 import de.stevenschwenke.java.javafx.simFX.business.logicalObjects.Interaction;
 

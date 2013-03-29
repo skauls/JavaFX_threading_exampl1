@@ -1,10 +1,5 @@
 package de.stevenschwenke.java.javafx.simFX.business.logicalObjects;
 
-import java.util.Set;
-
-import de.stevenschwenke.java.javafx.simFX.business.worldObjects.Resource;
-
-
 /**
  * Provides geographical logic.
  * 
@@ -12,31 +7,6 @@ import de.stevenschwenke.java.javafx.simFX.business.worldObjects.Resource;
  * 
  */
 public class GeographicalLogicProvider {
-
-	/**
-	 * @param coordinate
-	 *            a position on the world map
-	 * @param resources
-	 *            Set of resources to search in
-	 * @return the nearest resource to a given place on the map
-	 */
-	public static Resource findNearestResource(CartesianCoordinate coordinate,
-			Set<Resource> resources) {
-
-		Resource nearestResource = null;
-		double distanceToNearestResource = Double.MAX_VALUE;
-
-		for (Resource r : resources) {
-			double distance = calculateDistance(r.getPosition(), coordinate);
-
-			if (distance < distanceToNearestResource) {
-				distanceToNearestResource = distance;
-				nearestResource = r;
-			}
-		}
-
-		return nearestResource;
-	}
 
 	/**
 	 * Calculates the distance between two {@link CartesianCoordinate}s.

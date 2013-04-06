@@ -1,7 +1,8 @@
 package de.stevenschwenke.java.javafx.simFX.business;
 
 import de.stevenschwenke.java.javafx.simFX.business.logicalObjects.GameState;
-import de.stevenschwenke.java.javafx.simFX.business.logicalObjects.Interaction;
+import de.stevenschwenke.java.javafx.simFX.business.worldObjects.Colony;
+import de.stevenschwenke.java.javafx.simFX.business.worldObjects.Resource;
 import de.stevenschwenke.java.javafx.simFX.business.worldObjects.WorldObject;
 
 /**
@@ -32,18 +33,15 @@ public interface UserInterface {
 	void notifyDisappearance(WorldObject object);
 
 	/**
-	 * This method notifies the user interface of an interaction between
-	 * multiple {@link WorldObject}s. The contract of this method dictates that
-	 * the objects are given in the order of acting object(s), object(s) acted
-	 * upon. So if one kid beats another one up, this method should be called
-	 * something like notifyInteraction(Interaction.BEAT_UP, rowdy, geek);
+	 * This method notifies the user interface of a harvesting actino between a
+	 * {@link Colony} and a {@link Resource}.
 	 * 
-	 * @param interaction
-	 *            Kind of interaction
-	 * @param objects
-	 *            involved in the interaction
+	 * @param harvester
+	 *            Colony that harvests
+	 * @param harvest
+	 *            Resource that gets harvested
 	 */
-	void notifyInteraction(Interaction interaction, WorldObject[] objects);
+	public void notifyHarvest(Colony harvester, Resource harvest);
 
 	/**
 	 * A change in the game state, for example when the player won, has to be

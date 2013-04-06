@@ -19,7 +19,6 @@ import javafx.stage.Stage;
 import javafx.util.Duration;
 import de.stevenschwenke.java.javafx.simFX.business.UserInterface;
 import de.stevenschwenke.java.javafx.simFX.business.logicalObjects.GameState;
-import de.stevenschwenke.java.javafx.simFX.business.logicalObjects.Interaction;
 import de.stevenschwenke.java.javafx.simFX.business.worldObjects.Colony;
 import de.stevenschwenke.java.javafx.simFX.business.worldObjects.Resource;
 import de.stevenschwenke.java.javafx.simFX.business.worldObjects.ResourceSpawner;
@@ -165,53 +164,37 @@ public class JavaFxApplication extends Application implements UserInterface {
 
 	// TODO this should be refactored into a separate AnimationFX-class
 	@Override
-	public void notifyInteraction(final Interaction interaction,
-			final WorldObject[] objects) {
+	public void notifyHarvest(final Colony harvester, final Resource harvest) {
 		Platform.runLater(new Runnable() {
 			@Override
 			public void run() {
-				if (Interaction.HARVEST.equals(interaction)) {
-					if (objects.length != 2)
-						throw new RuntimeException(
-								"A harvest interaction must have exactly two objects involved: the harvester and the harvest");
 
-					WorldObject harvester = objects[0];
-					WorldObject harvest = objects[1];
+				final Line line = new Line(harvester.getPosition().getX(),
+						harvester.getPosition().getY(), harvest.getPosition()
+								.getX(), harvest.getPosition().getY());
 
-					if (harvester instanceof Colony
-							&& harvest instanceof Resource) {
+				line.setFill(null);
 
-						Colony c = (Colony) harvester;
-						Resource r = (Resource) harvest;
+				line.setStroke(Color.RED);
 
-						final Line line = new Line(c.getPosition().getX(), c
-								.getPosition().getY(), r.getPosition().getX(),
-								r.getPosition().getY());
+				line.setStrokeWidth(2);
 
-						line.setFill(null);
+				synchronized (rootGroup) {
+					rootGroup.getChildren().add(line);
 
-						line.setStroke(Color.RED);
+					FadeTransition ft = new FadeTransition(Duration
+							.millis(1300), line);
+					ft.setFromValue(1.0);
+					ft.setToValue(0);
+					ft.play();
 
-						line.setStrokeWidth(2);
-
-						synchronized (rootGroup) {
-							rootGroup.getChildren().add(line);
-
-							FadeTransition ft = new FadeTransition(Duration
-									.millis(1300), line);
-							ft.setFromValue(1.0);
-							ft.setToValue(0);
-							ft.play();
-
-							// remove the line after the animation
-							ft.setOnFinished(new EventHandler<ActionEvent>() {
-								@Override
-								public void handle(ActionEvent event) {
-									rootGroup.getChildren().remove(line);
-								}
-							});
+					// remove the line after the animation
+					ft.setOnFinished(new EventHandler<ActionEvent>() {
+						@Override
+						public void handle(ActionEvent event) {
+							rootGroup.getChildren().remove(line);
 						}
-					}
+					});
 				}
 			};
 		});

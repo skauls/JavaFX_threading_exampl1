@@ -8,8 +8,6 @@ import de.stevenschwenke.java.javafx.simFX.business.UserInterface;
 import de.stevenschwenke.java.javafx.simFX.business.logicalObjects.CartesianCoordinate;
 import de.stevenschwenke.java.javafx.simFX.business.logicalObjects.GameState;
 import de.stevenschwenke.java.javafx.simFX.business.logicalObjects.GroupMembership;
-import de.stevenschwenke.java.javafx.simFX.business.logicalObjects.Interaction;
-
 
 /**
  * The world in which the simulation takes place. Singelton.
@@ -115,18 +113,17 @@ public class World {
 	}
 
 	/**
-	 * Triggers an interaction of two {@link WorldObject}s at the user
-	 * interface. This method is only for displaying some effect on the
-	 * interface, not for logic.
+	 * Triggers a harvesting interaction. This method is only for displaying
+	 * some effect on the interface, not for logic.
 	 * 
-	 * @param interaction
-	 *            kind of interaction
-	 * @param objects
-	 *            that are involved in the interaction
+	 * @param harvester
+	 *            Colony that harvests
+	 * @param harvest
+	 *            Resource that gets harvested
 	 * 
 	 */
-	public void interact(Interaction interaction, WorldObject... objects) {
-		userInterface.notifyInteraction(interaction, objects);
+	public void notifyHarvest(Colony harvester, Resource harvest) {
+		userInterface.notifyHarvest(harvester, harvest);
 	}
 
 	/**

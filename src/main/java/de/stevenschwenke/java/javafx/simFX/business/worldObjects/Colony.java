@@ -8,7 +8,6 @@ import de.stevenschwenke.java.javafx.simFX.business.GameStateManager;
 import de.stevenschwenke.java.javafx.simFX.business.logicalObjects.CartesianCoordinate;
 import de.stevenschwenke.java.javafx.simFX.business.logicalObjects.GeographicalLogicProvider;
 import de.stevenschwenke.java.javafx.simFX.business.logicalObjects.GroupMembership;
-import de.stevenschwenke.java.javafx.simFX.business.logicalObjects.Interaction;
 
 /**
  * Some kind of base or settlement or colony. Don't know yet.
@@ -69,8 +68,7 @@ public class Colony implements WorldObject {
 			return;
 		}
 
-		World.getInstance()
-				.interact(Interaction.HARVEST, this, nearestResource);
+		World.getInstance().notifyHarvest(this, nearestResource);
 
 		nearestResource.destroy();
 		availableEnergy++;

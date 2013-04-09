@@ -41,7 +41,18 @@ public interface UserInterface {
 	 * @param harvest
 	 *            Resource that gets harvested
 	 */
-	public void notifyHarvest(Colony harvester, Resource harvest);
+	public void notifyHarvest(final Colony harvester, final Resource harvest);
+
+	/**
+	 * Notifies the user interface of an attack between two {@link Colony}s.
+	 * 
+	 * @param attacker
+	 * @param attacked
+	 * @param strength
+	 *            of the attack
+	 */
+	public void notifyAttack(final Colony attacker, final Colony attacked,
+			long strength);
 
 	/**
 	 * A change in the game state, for example when the player won, has to be

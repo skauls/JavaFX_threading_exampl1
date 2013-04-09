@@ -113,13 +113,18 @@ public class Colony implements WorldObject {
 			// clean.
 		}
 
-		long energyAttacked = attackedColony.getAvailableEnergy();
+		long energyOfAttacked = attackedColony.getAvailableEnergy();
 
-		if (energyAttacked > availableEnergy) {
-			attackedColony.setAvailableEnergy(energyAttacked - availableEnergy);
+		if (energyOfAttacked > availableEnergy) {
+			attackedColony.setAvailableEnergy(energyOfAttacked
+					- availableEnergy);
+			World.getInstance().notifyAttack(this, attackedColony,
+					availableEnergy);
 			setAvailableEnergy(0);
-		} else if (energyAttacked < availableEnergy) {
-			setAvailableEnergy(availableEnergy - energyAttacked);
+		} else if (energyOfAttacked <= availableEnergy) {
+			setAvailableEnergy(availableEnergy - energyOfAttacked);
+			World.getInstance().notifyAttack(this, attackedColony,
+					energyOfAttacked);
 			attackedColony.destroy();
 			GameStateManager.getInstance().checkGameState();
 		}

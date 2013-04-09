@@ -175,7 +175,8 @@ public class JavaFxApplication extends Application implements UserInterface {
 
 				line.setFill(null);
 
-				line.setStroke(Color.RED);
+				line.setStroke(new Color(255 / 255, (double) (110d / 255d),
+						(double) (3d / 255d), 1));
 
 				line.setStrokeWidth(2);
 
@@ -249,4 +250,63 @@ public class JavaFxApplication extends Application implements UserInterface {
 
 	}
 
+	@Override
+	public void notifyAttack(final Colony attacker, final Colony attacked,
+			final long strength) {
+		Platform.runLater(new Runnable() {
+			@Override
+			public void run() {
+
+				final Line line = new Line(attacker.getPosition().getX(),
+						attacker.getPosition().getY(), attacked.getPosition()
+								.getX(), attacked.getPosition().getY());
+
+				line.setFill(null);
+
+				line.setStroke(Color.RED);
+
+				line.setStrokeWidth(2);
+
+				synchronized (rootGroup) {
+					rootGroup.getChildren().add(line);
+
+					FadeTransition ft = new FadeTransition(Duration
+							.millis(1300), line);
+					ft.setFromValue(1.0);
+					ft.setToValue(0);
+					ft.play();
+
+					// remove the line after the animation
+					ft.setOnFinished(new EventHandler<ActionEvent>() {
+						@Override
+						public void handle(ActionEvent event) {
+							rootGroup.getChildren().remove(line);
+						}
+					});
+				}
+
+				final Label labelStrength = new Label("-" + strength);
+				labelStrength.setTextFill(Color.RED);
+				labelStrength.setLayoutX(attacked.getPosition().getX());
+				labelStrength.setLayoutY(attacked.getPosition().getY() - 20);
+				synchronized (rootGroup) {
+					rootGroup.getChildren().add(labelStrength);
+
+					final TimerTask messageLabelStrengthTimerTask = new TimerTask() {
+						@Override
+						public void run() {
+							Platform.runLater(new Runnable() {
+								@Override
+								public void run() {
+									rootGroup.getChildren().remove(
+											labelStrength);
+								}
+							});
+						}
+					};
+					new Timer().schedule(messageLabelStrengthTimerTask, 2500);
+				}
+			};
+		});
+	}
 }

@@ -127,6 +127,19 @@ public class World {
 	}
 
 	/**
+	 * Notifies the user interface of an attack between two {@link Colony}s.
+	 * 
+	 * @param attacker
+	 * @param attacked
+	 * @param strength
+	 *            of the attack
+	 */
+	public void notifyAttack(final Colony attacker, final Colony attacked,
+			long strength) {
+		userInterface.notifyAttack(attacker, attacked, strength);
+	}
+
+	/**
 	 * @return all {@link Resource}s on the map
 	 */
 	public Set<Resource> getAllExistingResources() {

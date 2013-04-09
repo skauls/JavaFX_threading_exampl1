@@ -137,6 +137,7 @@ public class World {
 	public void notifyAttack(final Colony attacker, final Colony attacked,
 			long strength) {
 		userInterface.notifyAttack(attacker, attacked, strength);
+		GameStateManager.getInstance().checkGameState();
 	}
 
 	/**

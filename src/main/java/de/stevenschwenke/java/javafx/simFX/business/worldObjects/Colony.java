@@ -4,7 +4,6 @@ import java.util.Set;
 import java.util.Timer;
 import java.util.TimerTask;
 
-import de.stevenschwenke.java.javafx.simFX.business.GameStateManager;
 import de.stevenschwenke.java.javafx.simFX.business.logicalObjects.CartesianCoordinate;
 import de.stevenschwenke.java.javafx.simFX.business.logicalObjects.GeographicalLogicProvider;
 import de.stevenschwenke.java.javafx.simFX.business.logicalObjects.GroupMembership;
@@ -126,7 +125,6 @@ public class Colony implements WorldObject {
 			World.getInstance().notifyAttack(this, attackedColony,
 					energyOfAttacked);
 			attackedColony.destroy();
-			GameStateManager.getInstance().checkGameState();
 		}
 	}
 

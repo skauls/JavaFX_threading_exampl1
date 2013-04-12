@@ -7,7 +7,7 @@ import javafx.scene.control.TitledPane;
 import javafx.scene.input.MouseEvent;
 import de.stevenschwenke.java.javafx.simFX.business.worldObjects.World;
 import de.stevenschwenke.java.javafx.simFX.ui.javaFX.JavaFxApplication;
-import de.stevenschwenke.java.javafx.simFX.ui.resourceSpawner.ResourceSpawnerFX;
+import de.stevenschwenke.java.javafx.simFX.ui.worldObjects.resourceSpawner.ResourceSpawnerFX;
 
 /**
  * Button at the upper right edge of the screen which enables or disables the

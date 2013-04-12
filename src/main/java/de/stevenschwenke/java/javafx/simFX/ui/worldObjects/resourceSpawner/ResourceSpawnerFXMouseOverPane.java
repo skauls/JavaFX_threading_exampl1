@@ -1,4 +1,4 @@
-package de.stevenschwenke.java.javafx.simFX.ui.resourceSpawner;
+package de.stevenschwenke.java.javafx.simFX.ui.worldObjects.resourceSpawner;
 
 import de.stevenschwenke.java.javafx.simFX.business.worldObjects.ResourceSpawner;
 import de.stevenschwenke.java.javafx.simFX.ui.javaFX.JavaFxApplication;

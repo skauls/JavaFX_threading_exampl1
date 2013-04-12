@@ -1,4 +1,4 @@
-package de.stevenschwenke.java.javafx.simFX.ui.resourceSpawner;
+package de.stevenschwenke.java.javafx.simFX.ui.worldObjects.resourceSpawner;
 
 import javafx.event.EventHandler;
 import javafx.scene.control.Button;

@@ -1,4 +1,4 @@
-package de.stevenschwenke.java.javafx.simFX.ui.colony;
+package de.stevenschwenke.java.javafx.simFX.ui.worldObjects.colony;
 
 import javafx.event.EventHandler;
 import javafx.scene.image.Image;

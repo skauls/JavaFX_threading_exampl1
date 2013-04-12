@@ -24,9 +24,9 @@ import de.stevenschwenke.java.javafx.simFX.business.worldObjects.Resource;
 import de.stevenschwenke.java.javafx.simFX.business.worldObjects.ResourceSpawner;
 import de.stevenschwenke.java.javafx.simFX.business.worldObjects.World;
 import de.stevenschwenke.java.javafx.simFX.business.worldObjects.WorldObject;
-import de.stevenschwenke.java.javafx.simFX.ui.colony.ColonyFX;
-import de.stevenschwenke.java.javafx.simFX.ui.resource.ResourceFX;
-import de.stevenschwenke.java.javafx.simFX.ui.resourceSpawner.ResourceSpawnerFX;
+import de.stevenschwenke.java.javafx.simFX.ui.worldObjects.colony.ColonyFX;
+import de.stevenschwenke.java.javafx.simFX.ui.worldObjects.resource.ResourceFX;
+import de.stevenschwenke.java.javafx.simFX.ui.worldObjects.resourceSpawner.ResourceSpawnerFX;
 
 /**
  * User Interface with JavaFX. This class starts a JavaFX application and

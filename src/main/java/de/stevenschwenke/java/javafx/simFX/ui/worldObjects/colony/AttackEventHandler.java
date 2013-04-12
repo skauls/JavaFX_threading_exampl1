@@ -1,4 +1,4 @@
-package de.stevenschwenke.java.javafx.simFX.ui.colony;
+package de.stevenschwenke.java.javafx.simFX.ui.worldObjects.colony;
 
 import de.stevenschwenke.java.javafx.simFX.business.worldObjects.Colony;
 import de.stevenschwenke.java.javafx.simFX.ui.javaFX.JavaFxApplication;

@@ -3,7 +3,6 @@ package de.stevenschwenke.java.javafx.simFX.business.worldObjects;
 import java.util.HashSet;
 import java.util.Set;
 
-import de.stevenschwenke.java.javafx.simFX.business.GameStateManager;
 import de.stevenschwenke.java.javafx.simFX.business.UserInterface;
 import de.stevenschwenke.java.javafx.simFX.business.logicalObjects.CartesianCoordinate;
 import de.stevenschwenke.java.javafx.simFX.business.logicalObjects.GameState;
@@ -16,6 +15,8 @@ import de.stevenschwenke.java.javafx.simFX.business.logicalObjects.GroupMembersh
  * 
  */
 public class World {
+
+	private GameState state;
 
 	/** the user interface that displays the world graphicaly */
 	private UserInterface userInterface;
@@ -49,7 +50,7 @@ public class World {
 			addSomeObjects();
 		}
 
-		GameStateManager.getInstance().checkGameState();
+		checkGameState();
 	}
 
 	/**
@@ -137,7 +138,7 @@ public class World {
 	public void notifyAttack(final Colony attacker, final Colony attacked,
 			long strength) {
 		userInterface.notifyAttack(attacker, attacked, strength);
-		GameStateManager.getInstance().checkGameState();
+		checkGameState();
 	}
 
 	/**
@@ -165,6 +166,18 @@ public class World {
 				colonies.add((Colony) worldObject);
 		}
 		return colonies;
+	}
+
+	public void checkGameState() {
+		for (Colony colony : World.getInstance().getAllExistingColonies()) {
+			if (colony.getGroupMembership().equals(GroupMembership.FOE1)) {
+				state = GameState.RUNNING;
+				return;
+			}
+		}
+
+		state = GameState.PLAYER_WON;
+		World.getInstance().notifyGameStateChange(state);
 	}
 
 	public double getWidth() {
